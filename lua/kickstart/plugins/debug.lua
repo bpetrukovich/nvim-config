@@ -7,9 +7,7 @@
 -- kickstart.nvim and not kitchen-sink.nvim ;)
 
 return {
-  -- NOTE: Yes, you can install new plugins here!
   'mfussenegger/nvim-dap',
-  -- NOTE: And you can specify dependencies as well
   dependencies = {
     -- Creates a beautiful debugger UI
     'rcarriga/nvim-dap-ui',
@@ -23,6 +21,8 @@ return {
 
     -- Add your own debuggers here
     'leoluz/nvim-dap-go',
+    'microsoft/vscode-js-debug',
+    'mxsdev/nvim-dap-vscode-js',
   },
   config = function()
     local dap = require 'dap'
@@ -42,6 +42,7 @@ return {
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
         'delve',
+        'js-debug-adapter',
       },
     }
 
@@ -63,6 +64,8 @@ return {
       --    Don't feel like these are good choices.
       icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
       controls = {
+        enabled = true,
+        element = 'repl',
         icons = {
           pause = '⏸',
           play = '▶',
@@ -74,6 +77,62 @@ return {
           terminate = '⏹',
           disconnect = '⏏',
         },
+      },
+      element_mappings = {},
+      expand_lines = true,
+      floating = {
+        border = 'single',
+        mappings = {
+          close = { 'q', '<Esc>' },
+        },
+      },
+      force_buffers = true,
+      layouts = {
+        {
+          elements = {
+            {
+              id = 'scopes',
+              size = 0.25,
+            },
+            {
+              id = 'breakpoints',
+              size = 0.25,
+            },
+            {
+              id = 'stacks',
+              size = 0.25,
+            },
+            {
+              id = 'watches',
+              size = 0.25,
+            },
+          },
+          position = 'left',
+          size = 40,
+        },
+        {
+          elements = { {
+            id = 'repl',
+            size = 0.5,
+          }, {
+            id = 'console',
+            size = 0.5,
+          } },
+          position = 'bottom',
+          size = 10,
+        },
+      },
+      mappings = {
+        edit = 'e',
+        expand = { '<CR>', '<2-LeftMouse>' },
+        open = 'o',
+        remove = 'd',
+        repl = 'r',
+        toggle = 't',
+      },
+      render = {
+        indent = 1,
+        max_value_lines = 100,
       },
     }
 
@@ -92,5 +151,65 @@ return {
         detached = vim.fn.has 'win32' == 0,
       },
     }
+
+    require('dap-vscode-js').setup {
+      -- node_path = "node", -- Path of node executable. Defaults to $NODE_PATH, and then "node"
+      -- debugger_path = '~/.config/nvim/dbg/js-debug/', -- Path to vscode-js-debug installation.
+      -- debugger_cmd = { "js-debug-adapter" }, -- Command to use to launch the debug server. Takes precedence over `node_path` and `debugger_path`.
+      adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' }, -- which adapters to register in nvim-dap
+      -- log_file_path = "(stdpath cache)/dap_vscode_js.log" -- Path for file logging
+      -- log_file_level = false -- Logging level for output to file. Set to false to disable file logging.
+      -- log_console_level = vim.log.levels.ERROR -- Logging level for output to console. Set to false to disable console output.
+    }
+
+    dap.adapters.coreclr = {
+      type = 'executable',
+      command = 'netcoredbg',
+      args = { '--interpreter=vscode' },
+    }
+
+    dap.configurations.cs = {
+      {
+        type = 'coreclr',
+        name = 'launch - netcoredbg',
+        request = 'launch',
+        program = function()
+          return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+        end,
+      },
+    }
+
+    dap.adapters['pwa-node'] = {
+      type = 'server',
+      host = 'localhost',
+      port = '${port}',
+      executable = {
+        command = 'js-debug-adapter',
+        args = {
+          -- '~/.config/nvim/dbg/js-debug/src/dapDebugServer.js',
+          '${port}',
+        },
+      },
+    }
+
+    for _, language in ipairs { 'typescript', 'javascript' } do
+      dap.configurations[language] = {
+        {
+          type = 'pwa-node',
+          request = 'launch',
+          name = 'Launch file',
+          program = '${file}',
+          cwd = '${workspaceFolder}',
+          sourceMaps = true,
+        },
+        {
+          type = 'pwa-node',
+          request = 'attach',
+          name = 'Attach',
+          processId = require('dap.utils').pick_process,
+          cwd = '${workspaceFolder}',
+        },
+      }
+    end
   end,
 }

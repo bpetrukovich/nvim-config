@@ -274,13 +274,8 @@ require('lazy').setup({
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     },
     config = function()
-      -- Telescope is a fuzzy finder that comes with a lot of different things that
-      -- it can fuzzy find! It's more than just a "file finder", it can search
-      -- many different aspects of Neovim, your workspace, LSP, and more!
-      --
       -- The easiest way to use Telescope, is to start by doing something like:
       --  :Telescope help_tags
-      --
       -- After running this command, a window will open up and you're able to
       -- type in the prompt window. You'll see a list of `help_tags` options and
       -- a corresponding preview of the help.
@@ -295,15 +290,17 @@ require('lazy').setup({
 
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
+      local open_with_trouble = require('trouble.sources.telescope').open
       require('telescope').setup {
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
         --
-        -- defaults = {
-        --   mappings = {
-        --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-        --   },
-        -- },
+        defaults = {
+          mappings = {
+            i = { ['<c-enter>'] = 'to_fuzzy_refine', ['<c-t>'] = open_with_trouble },
+            n = { ['<c-t>'] = open_with_trouble },
+          },
+        },
         pickers = {
           find_files = {
             hidden = true,
@@ -545,8 +542,7 @@ require('lazy').setup({
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         clangd = {},
-        -- clangd = {},
-        -- gopls = {},
+        gopls = {},
         -- pyright = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
@@ -629,7 +625,7 @@ require('lazy').setup({
         -- languages here or re-enable it for the disabled ones.
         local disable_filetypes = { c = true, cpp = true }
         return {
-          timeout_ms = 500,
+          timeout_ms = 1500,
           lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
         }
       end,
@@ -640,14 +636,16 @@ require('lazy').setup({
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
-        javascript = { { 'prettierd', 'prettier' } },
-        typescript = { { 'prettierd', 'prettier' } },
-        html = { { 'prettierd', 'prettier' } },
-        css = { { 'prettierd', 'prettier' } },
-        json = { { 'prettierd', 'prettier' } },
-        yaml = { { 'prettierd', 'prettier' } },
-        typescriptreact = { { 'prettierd', 'prettier' } },
-        javascriptreact = { { 'prettierd', 'prettier' } },
+        javascript = { 'prettierd', 'prettier' },
+        typescript = { 'prettierd', 'prettier' },
+        html = { 'prettierd', 'prettier' },
+        css = { 'prettierd', 'prettier' },
+        scss = { 'prettierd', 'prettier' },
+        json = { 'prettierd', 'prettier' },
+        yaml = { 'prettierd', 'prettier' },
+        typescriptreact = { 'prettierd', 'prettier' },
+        javascriptreact = { 'prettierd', 'prettier' },
+        cs = { 'csharpier' },
       },
     },
   },
@@ -764,26 +762,6 @@ require('lazy').setup({
     end,
   },
 
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    -- 'folke/tokyonight.nvim',
-    'rose-pine/neovim',
-    name = 'rose-pine-main',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
-    init = function()
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'rose-pine'
-
-      -- You can configure highlights by doing something like:
-      vim.cmd.hi 'Comment gui=none'
-    end,
-  },
-
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
@@ -866,7 +844,7 @@ require('lazy').setup({
   --  Here are some example plugins that I've included in the Kickstart repository.
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
-  -- require 'kickstart.plugins.debug',
+  require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
   require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
@@ -900,6 +878,28 @@ require('lazy').setup({
     },
   },
 })
+
+-- require('sonarlint').setup {
+--   server = {
+--     cmd = {
+--       'sonarlint-language-server',
+--       -- Ensure that sonarlint-language-server uses stdio channel
+--       '-stdio',
+--       '-analyzers',
+--       -- paths to the analyzers you need, using those for python and java in this example
+--       vim.fn.expand '$MASON/share/sonarlint-analyzers/sonarpython.jar',
+--       vim.fn.expand '$MASON/share/sonarlint-analyzers/sonarcfamily.jar',
+--       vim.fn.expand '$MASON/share/sonarlint-analyzers/sonarjava.jar',
+--     },
+--   },
+--   filetypes = {
+--     -- Tested and working
+--     'python',
+--     'cpp',
+--     'java',
+--     'cs',
+--   },
+-- }
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
