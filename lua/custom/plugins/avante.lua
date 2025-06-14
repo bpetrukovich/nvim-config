@@ -4,12 +4,12 @@ return {
   version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
   opts = {
     provider = 'groq',
-    vendors = {
+    providers = {
       groq = {
         __inherited_from = 'openai',
-        api_key_name = 'GROQ_API_KEY',
-        endpoint = 'https://api.groq.com/openai/v1/',
-        model = 'llama-3.3-70b-specdec',
+        api_key_name = 'OPENROUTER_API_KEY',
+        endpoint = 'https://openrouter.ai/api/v1',
+        model = 'mistralai/devstral-small:free',
       },
     },
   },

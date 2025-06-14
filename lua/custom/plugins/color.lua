@@ -1,14 +1,23 @@
 return {
   {
-    'rebelot/kanagawa.nvim',
+    'rafamadriz/neon',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     init = function()
-      vim.cmd.colorscheme 'kanagawa-dragon'
+      vim.cmd.colorscheme 'neon'
 
-      -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
     end,
   },
+  -- {
+  --   'rebelot/kanagawa.nvim',
+  --   priority = 1000, -- Make sure to load this before all the other start plugins.
+  --   init = function()
+  --     vim.cmd.colorscheme 'kanagawa-dragon'
+  --
+  --     -- You can configure highlights by doing something like:
+  --     vim.cmd.hi 'Comment gui=none'
+  --   end,
+  -- },
   -- {
   --   -- 'folke/tokyonight.nvim',
   --   'rose-pine/neovim',

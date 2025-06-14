@@ -1,5 +1,5 @@
 return {
-  'tribela/transparent.nvim',
-  event = 'VimEnter',
-  config = true,
+  -- 'tribela/transparent.nvim',
+  -- event = 'VimEnter',
+  -- config = true,
 }

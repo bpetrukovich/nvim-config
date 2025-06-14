@@ -23,6 +23,7 @@ return {
     'leoluz/nvim-dap-go',
     'microsoft/vscode-js-debug',
     'mxsdev/nvim-dap-vscode-js',
+    'theHamsta/nvim-dap-virtual-text',
   },
   config = function()
     local dap = require 'dap'
@@ -51,10 +52,10 @@ return {
     vim.keymap.set('n', '<F1>', dap.step_into, { desc = 'Debug: Step Into' })
     vim.keymap.set('n', '<F2>', dap.step_over, { desc = 'Debug: Step Over' })
     vim.keymap.set('n', '<F3>', dap.step_out, { desc = 'Debug: Step Out' })
-    vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint, { desc = 'Debug: Toggle Breakpoint' })
-    vim.keymap.set('n', '<leader>B', function()
-      dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
-    end, { desc = 'Debug: Set Breakpoint' })
+    vim.keymap.set('n', '<leader>db', dap.toggle_breakpoint, { desc = 'Debug: Toggle Breakpoint' })
+    -- vim.keymap.set('n', '<leader>', function()
+    --   dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
+    -- end, { desc = 'Debug: Set Breakpoint' })
 
     -- Dap UI setup
     -- For more information, see |:help nvim-dap-ui|
@@ -164,17 +165,20 @@ return {
 
     dap.adapters.coreclr = {
       type = 'executable',
-      command = 'netcoredbg',
+      command = '/home/bpetrukovich/.local/share/nvim/mason/bin/netcoredbg',
       args = { '--interpreter=vscode' },
     }
 
     dap.configurations.cs = {
       {
+        env = {
+          ASPNETCORE_ENVIRONMENT = 'Development',
+        },
         type = 'coreclr',
         name = 'launch - netcoredbg',
         request = 'launch',
         program = function()
-          return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+          return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/src/', 'file')
         end,
       },
     }

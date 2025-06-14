@@ -14,6 +14,8 @@ vim.g.netrw_banner = 0
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+vim.opt.termguicolors = true
+
 -- Enable mouse mode for resizing splits
 vim.opt.mouse = 'a'
 
@@ -178,17 +180,16 @@ vim.opt.rtp:prepend(lazypath)
 --    :Lazy update
 --
 -- NOTE: Here is where you install your plugins.
-require('lazy').setup({
-  -- Use `opts = {}` to force a plugin to be loaded.
-  --
-  --  This is equivalent to:
-  --    require('Comment').setup({})
+--
+local plugins = {}
 
-  -- require 'kickstart.plugins.indent_line',
-  -- require 'kickstart.plugins.neo-tree',
+if vim.g.vscode then
+  table.insert(plugins, { import = 'vscode.plugins' })
+else
+  table.insert(plugins, { import = 'custom.plugins' })
+end
 
-  { import = 'custom.plugins' },
-}, {
+require('lazy').setup(plugins, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
     -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
@@ -209,6 +210,23 @@ require('lazy').setup({
     },
   },
 })
+
+vim.keymap.set('n', '<leader>oo', function()
+  require('lazy').load { plugins = { 'obsidian.nvim' } }
+end)
+
+require('dap-cs').setup {
+  netcoredbg = {
+    -- the path to the executable netcoredbg which will be used for debugging.
+    -- by default, this is the "netcoredbg" executable on your PATH.
+    path = '/home/bpetrukovich/.local/share/nvim/mason/bin/netcoredbg',
+  },
+}
+
+vim.keymap.del('n', 'grn')
+vim.keymap.del('n', 'gra')
+vim.keymap.del('n', 'gri')
+vim.keymap.del('n', 'grr')
 
 -- require('roslyn').setup()
 
