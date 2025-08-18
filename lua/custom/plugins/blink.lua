@@ -1,7 +1,10 @@
 return {
   'saghen/blink.cmp',
   -- optional: provides snippets for the snippet source
-  dependencies = { 'rafamadriz/friendly-snippets' },
+  dependencies = {
+    'rafamadriz/friendly-snippets',
+    'Kaiser-Yang/blink-cmp-avante',
+  },
 
   -- use a release tag to download pre-built binaries
   version = '1.*',
@@ -36,13 +39,32 @@ return {
     -- (Default) Only show the documentation popup when manually triggered
     completion = { documentation = { auto_show = false } },
 
+    cmdline = {
+      enabled = false,
+    },
+
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer', 'codeium' },
+
+      default = { 'avante', 'lsp', 'path', 'snippets', 'buffer', 'codeium', 'easy-dotnet' },
 
       providers = {
         codeium = { name = 'Codeium', module = 'codeium.blink', async = true },
+        avante = {
+          module = 'blink-cmp-avante',
+          name = 'Avante',
+          opts = {
+            -- options for blink-cmp-avante
+          },
+        },
+        ['easy-dotnet'] = {
+          name = 'easy-dotnet',
+          enabled = true,
+          module = 'easy-dotnet.completion.blink',
+          score_offset = 10000,
+          async = true,
+        },
       },
     },
 

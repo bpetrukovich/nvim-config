@@ -37,6 +37,8 @@ vim.opt.undofile = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
+vim.opt.conceallevel = 1
+
 -- Keep signcolumn on by default
 vim.opt.signcolumn = 'yes'
 
