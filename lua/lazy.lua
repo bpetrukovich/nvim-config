@@ -15,8 +15,8 @@ rtp:prepend(lazypath)
 
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
-  { import = 'custom.plugins' },
-  { import = 'custom.dotnet' },
+  { import = 'plugins' },
+  { import = 'dotnet' },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the

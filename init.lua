@@ -6,10 +6,10 @@ vim.g.maplocalleader = ' '
 vim.g.have_nerd_font = false
 
 -- Load configuration modules
-require 'config.options'
-require 'config.keymaps'
-require 'config.autocmds'
-require 'config.lazy'
+require 'options'
+require 'keymaps'
+require 'autocmds'
+require 'lazy'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
