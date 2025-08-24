@@ -23,7 +23,7 @@ return { -- Autoformat
         return nil
       else
         return {
-          timeout_ms = 500,
+          timeout_ms = 1500,
           lsp_format = 'fallback',
         }
       end
