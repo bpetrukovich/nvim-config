@@ -142,7 +142,19 @@ return {
     --  - settings (table): Override the default settings passed when initializing the server.
     --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
     local servers = {
-      -- clangd = {},
+      -- NOTE: .NET/C# servers (roslyn, rzls) are configured separately in dotnet/ folder
+      
+      -- JavaScript/TypeScript
+      ts_ls = {},
+      
+      -- Web development
+      html = {},
+      cssls = {},
+      jsonls = {},
+      tailwindcss = {},
+      
+      -- Other languages
+      clangd = {},
       -- gopls = {},
       -- pyright = {},
       -- rust_analyzer = {},
