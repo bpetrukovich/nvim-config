@@ -4,7 +4,10 @@
 vim.o.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.o.relativenumber = true
+vim.o.relativenumber = true
+
+-- Enable true colors
+vim.o.termguicolors = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
@@ -29,6 +32,9 @@ vim.o.undofile = true
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.o.ignorecase = true
 vim.o.smartcase = true
+
+-- Conceal level for better markdown/latex rendering
+vim.o.conceallevel = 1
 
 -- Keep signcolumn on by default
 vim.o.signcolumn = 'yes'
@@ -67,3 +73,12 @@ vim.o.scrolloff = 10
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`
 vim.o.confirm = true
+
+-- Indentation settings
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+vim.o.smarttab = true
+vim.o.expandtab = true
+
+-- Set highlight on search, but clear on pressing <Esc> in normal mode
+vim.o.hlsearch = true

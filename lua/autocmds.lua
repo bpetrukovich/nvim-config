@@ -12,6 +12,18 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Not recommended, quickfix -> Trouble
+vim.api.nvim_create_autocmd('BufRead', {
+  callback = function(ev)
+    if vim.bo[ev.buf].buftype == 'quickfix' then
+      vim.schedule(function()
+        vim.cmd [[cclose]]
+        vim.cmd [[Trouble qflist open]]
+      end)
+    end
+  end,
+})
+
 vim.api.nvim_create_autocmd('User', {
   pattern = 'OilActionsPost',
   callback = function(event)
