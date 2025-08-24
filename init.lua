@@ -178,7 +178,6 @@ require('lazy').setup({
   -- which loads which-key before all the UI elements are loaded. Events can be
   -- normal autocommands events (`:help autocmd-events`).
 
-  -- LSP Plugins
   { -- Autoformat
     'stevearc/conform.nvim',
     event = { 'BufWritePre' },
