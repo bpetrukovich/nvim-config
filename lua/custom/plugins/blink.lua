@@ -30,6 +30,7 @@ return { -- Autocompletion
       opts = {},
     },
     'folke/lazydev.nvim',
+    'Exafunction/codeium.nvim',
   },
   --- @module 'blink.cmp'
   --- @type blink.cmp.Config
@@ -75,9 +76,10 @@ return { -- Autocompletion
     },
 
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'lazydev' },
+      default = { 'lsp', 'path', 'snippets', 'lazydev', 'codeium' },
       providers = {
         lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
+        codeium = { name = 'Codeium', module = 'codeium.blink', async = true },
       },
     },
 

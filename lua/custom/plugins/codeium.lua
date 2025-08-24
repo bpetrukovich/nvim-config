@@ -2,7 +2,7 @@ return {
   'Exafunction/windsurf.nvim',
   dependencies = {
     'nvim-lua/plenary.nvim',
-    'hrsh7th/nvim-cmp',
+    'saghen/blink.cmp',
   },
   config = function()
     require('codeium').setup {
