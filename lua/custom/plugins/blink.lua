@@ -76,10 +76,17 @@ return { -- Autocompletion
     },
 
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'lazydev', 'codeium' },
+      default = { 'lsp', 'path', 'snippets', 'lazydev', 'codeium', 'easy-dotnet' },
       providers = {
         lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
         codeium = { name = 'Codeium', module = 'codeium.blink', async = true },
+        ['easy-dotnet'] = {
+          name = 'easy-dotnet',
+          enabled = true,
+          module = 'easy-dotnet.completion.blink',
+          score_offset = 10000,
+          async = true,
+        },
       },
     },
 
