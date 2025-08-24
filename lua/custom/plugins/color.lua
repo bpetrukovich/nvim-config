@@ -8,6 +8,17 @@ return {
   --     vim.cmd.hi 'Comment gui=none'
   --   end,
   -- },
+  --
+  -- {
+  --   'bluz71/vim-moonfly-colors',
+  --   priority = 1000, -- Make sure to load this before all the other start plugins.
+  --   init = function()
+  --     vim.cmd.colorscheme 'moonfly'
+  --
+  --     -- You can configure highlights by doing something like:
+  --     vim.cmd.hi 'Comment gui=none'
+  --   end,
+  -- },
   {
     'rebelot/kanagawa.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
