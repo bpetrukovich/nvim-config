@@ -111,7 +111,7 @@ return {
       local date_str = os.date '%Y%m%d'
       local suffix = ''
       if title ~= nil then
-        if title:match '^PP%-' or title:match '^IN%-' then
+        if title:match '^PP%-' or title:match '^IN%-' or title:match '^EN%-' then
           return title
         end
         -- Для английских названий: lowercase, дефисы, только безопасные символы
