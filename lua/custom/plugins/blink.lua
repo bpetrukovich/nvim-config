@@ -50,7 +50,14 @@ return {
       default = { 'avante', 'lsp', 'path', 'snippets', 'buffer', 'codeium', 'easy-dotnet' },
 
       providers = {
-        codeium = { name = 'Codeium', module = 'codeium.blink', async = true },
+        codeium = {
+          name = 'Codeium',
+          module = 'codeium.blink',
+          async = true,
+          enabled = function()
+            return vim.bo.filetype ~= 'oil'
+          end,
+        },
         avante = {
           module = 'blink-cmp-avante',
           name = 'Avante',
