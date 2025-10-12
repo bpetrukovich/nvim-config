@@ -111,6 +111,7 @@ return {
       local date_str = os.date '%Y%m%d'
       local suffix = ''
       if title ~= nil then
+        -- NOTE: Можно будет при надобности сделать чтобы любой татл с префиксом по типу XX- не добалял префикс
         if title:match '^PP%-' or title:match '^IN%-' or title:match '^EN%-' then
           return title
         end
