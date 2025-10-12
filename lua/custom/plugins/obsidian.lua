@@ -108,24 +108,27 @@ return {
     ---@param title string|?
     ---@return string
     note_id_func = function(title)
-      -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
-      -- In this case a note with the title 'My new note' will be given an ID that looks
-      -- like '1657296016-my-new-note', and therefore the file name '1657296016-my-new-note.md'
+      local date_str = os.date '%Y%m%d'
       local suffix = ''
       if title ~= nil then
-        -- if title is ticket number than returning it without suffix
         if title:match '^PP%-' or title:match '^IN%-' then
           return title
         end
-        -- If title is given, transform it into valid file name.
-        suffix = title:gsub('%s+', '-'):gsub('[^A-Za-z0-9-]', ''):lower()
+        -- Для английских названий: lowercase, дефисы, только безопасные символы
+        suffix = title
+          :gsub('%s+', '-') -- Заменяем пробелы на дефисы
+          :gsub('[^%w%-]', '') -- Удаляем все кроме букв, цифр и дефисов
+          :gsub('-+', '-') -- Объединяем множественные дефисы
+          :gsub('^-', '') -- Убираем дефис в начале
+          :gsub('-$', '') -- Убираем дефис в конце
+          :lower() -- Все в нижний регистр
       else
-        -- If title is nil, just add 4 random uppercase letters to the suffix.
+        -- Если заголовок не задан, генерируем случайный суффикс
         for _ = 1, 4 do
-          suffix = suffix .. string.char(math.random(65, 90))
+          suffix = suffix .. string.char(math.random(97, 122)) -- lowercase letters
         end
       end
-      return tostring(os.time()) .. '-' .. suffix
+      return date_str .. '-' .. suffix
     end,
 
     -- Optional, customize how note file names are generated given the ID, target directory, and title.
