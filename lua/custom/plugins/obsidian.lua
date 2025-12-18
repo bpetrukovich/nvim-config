@@ -24,7 +24,7 @@ return {
       {
         name = 'personal',
         -- path = '/mnt/c/Users/b.petrukovich/Documents/obsidian-vault',
-        path = '~/obsidian-vault',
+        path = '/home/bpetrukovich/obsidian-vault/',
       },
       -- {
       --   name = 'work',

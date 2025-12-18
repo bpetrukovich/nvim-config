@@ -1,4 +1,5 @@
-return {
+return -- lazy.nvim
+{
   'GustavEikaas/easy-dotnet.nvim',
   -- 'nvim-telescope/telescope.nvim' or 'ibhagwan/fzf-lua' or 'folke/snacks.nvim'
   -- are highly recommended for a better experience
@@ -20,10 +21,20 @@ return {
     local dotnet = require 'easy-dotnet'
     -- Options are not required
     dotnet.setup {
-      --Optional function to return the path for the dotnet sdk (e.g C:/ProgramFiles/dotnet/sdk/8.0.0)
-      -- easy-dotnet will resolve the path automatically if this argument is omitted, for a performance improvement you can add a function that returns a hardcoded string
-      -- You should define this function to return a hardcoded path for a performance improvement 🚀
-      get_sdk_path = get_sdk_path,
+      lsp = {
+        enabled = false, -- Enable builtin roslyn lsp
+        roslynator_enabled = true, -- Automatically enable roslynator analyzer
+        analyzer_assemblies = {}, -- Any additional roslyn analyzers you might use like SonarAnalyzer.CSharp
+        config = {},
+      },
+      debugger = {
+        -- The path to netcoredbg executable
+        bin_path = nil,
+        auto_register_dap = true,
+        mappings = {
+          open_variable_viewer = { lhs = 'T', desc = 'open variable viewer' },
+        },
+      },
       ---@type TestRunnerOptions
       test_runner = {
         ---@type "split" | "vsplit" | "float" | "buf"
@@ -48,6 +59,7 @@ return {
         },
         mappings = {
           run_test_from_buffer = { lhs = '<leader>r', desc = 'run test from buffer' },
+          peek_stack_trace_from_buffer = { lhs = '<leader>p', desc = 'peek stack trace from buffer' },
           filter_failed_tests = { lhs = '<leader>fe', desc = 'filter failed tests' },
           debug_test = { lhs = '<leader>d', desc = 'debug test' },
           go_to_file = { lhs = '<leader>g', desc = 'go to file' },
@@ -110,6 +122,10 @@ return {
           register = '+', -- which register to check
         },
       },
+      server = {
+        ---@type nil | "Off" | "Critical" | "Error" | "Warning" | "Information" | "Verbose" | "All"
+        log_level = nil,
+      },
       -- choose which picker to use with the plugin
       -- possible values are "telescope" | "fzf" | "snacks" | "basic"
       -- if no picker is specified, the plugin will determine
@@ -124,14 +140,13 @@ return {
           spinner:start_spinner(start_event.job.name)
           ---@param finished_event JobEvent
           return function(finished_event)
-            spinner:stop_spinner(finished_event.result.text, finished_event.result.level)
+            spinner:stop_spinner(finished_event.result.msg, finished_event.result.level)
           end
         end,
       },
-      debugger = {
-        mappings = {
-          open_variable_viewer = { lhs = 'T', desc = 'open variable viewer' },
-        },
+      diagnostics = {
+        default_severity = 'error',
+        setqflist = false,
       },
     }
 
@@ -139,10 +154,5 @@ return {
     vim.api.nvim_create_user_command('Secrets', function()
       dotnet.secrets()
     end, {})
-
-    -- Example keybinding
-    vim.keymap.set('n', '<C-p>', function()
-      dotnet.run_project()
-    end)
   end,
 }

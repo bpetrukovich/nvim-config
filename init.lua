@@ -8,13 +8,13 @@ vim.g.have_nerd_font = true
 vim.g.netrw_banner = 0
 
 -- Load configuration modules
-require('config.options')
-require('config.keymaps')
-require('config.autocmds')
-require('config.lazy')
+require 'config.options'
+require 'config.keymaps'
+require 'config.autocmds'
+require 'config.lazy'
 
 -- Load custom configurations
-require('custom')
+require 'custom'
 
 -- modeline. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

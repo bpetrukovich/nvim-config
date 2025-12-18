@@ -47,6 +47,8 @@ vim.keymap.set('n', '<leader>oo', function()
   require('lazy').load { plugins = { 'obsidian.nvim' } }
 end)
 
+vim.keymap.set('n', '<leader>wo', '<cmd>!wsl-open .<CR>')
+
 -- Delete conflicting keymaps
 vim.keymap.del('n', 'grn')
 vim.keymap.del('n', 'gra')

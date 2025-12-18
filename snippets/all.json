@@ -1,0 +1,10 @@
+{
+  "dboard": {
+    "prefix": "dboard",
+    "body": ["http://localhost:48654"]
+  },
+  "export": {
+    "prefix": "export",
+    "body": ["http://localhost:21865"]
+  }
+}

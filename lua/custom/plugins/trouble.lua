@@ -19,6 +19,11 @@ return {
       desc = 'Symbols (Trouble)',
     },
     {
+      '<leader>cr',
+      '<cmd>Trouble lsp_references toggle focus=false win.position=right<cr>',
+      desc = 'LSP Definitions / references / ... (Trouble)',
+    },
+    {
       '<leader>cl',
       '<cmd>Trouble lsp toggle focus=false win.position=right<cr>',
       desc = 'LSP Definitions / references / ... (Trouble)',

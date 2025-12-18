@@ -84,6 +84,14 @@ return { -- Fuzzy Finder (files, lsp, etc)
     vim.keymap.set('n', '<leader>bb', builtin.buffers, { desc = '[ ] Find existing buffers' })
     vim.keymap.set('n', '<leader>sb', builtin.git_branches, { desc = '[S]earch [B]ranch' })
 
+    vim.keymap.set('n', '<leader>si', function()
+      builtin.find_files {
+        hidden = true,
+        no_ignore = true,
+        no_ignore_parent = true,
+      }
+    end, { desc = '[S]earch [I]gnored files (gitignore)' })
+
     -- Slightly advanced example of overriding default behavior and theme
     vim.keymap.set('n', '<leader>/', function()
       -- You can pass additional configuration to Telescope to change the theme, layout, etc.
@@ -101,6 +109,30 @@ return { -- Fuzzy Finder (files, lsp, etc)
         prompt_title = 'Live Grep in Open Files',
       }
     end, { desc = '[S]earch [/] in Open Files' })
+
+    vim.keymap.set('n', '<leader>sy', function()
+      builtin.live_grep {
+        file_ignore_patterns = {
+          '.*%.spec%..*$',
+          'test/mocks/.*',
+          'test/stubs/.*',
+          'tests/.*',
+        },
+      }
+    end, { desc = '[S]earch by [G]rep [T]ests excluded' })
+
+    vim.keymap.set('n', '<leader>st', function() -- [S]earch [G]rep [T]ests only
+      builtin.live_grep {
+        additional_args = function()
+          return {
+            '--glob=**/*.spec.*',
+            '--glob=**/test/mocks/**',
+            '--glob=**/test/stubs/**',
+            '--glob=**/tests/**',
+          }
+        end,
+      }
+    end, { desc = '[S]earch by [G]rep [T]ests only' })
 
     -- Shortcut for searching your Neovim configuration files
     vim.keymap.set('n', '<leader>sn', function()
