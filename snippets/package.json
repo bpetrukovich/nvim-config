@@ -5,6 +5,13 @@
       {
         "language": "all",
         "path": "./all.json"
+      },
+      {
+        "language": [
+          "csharp",
+          "cs"
+        ],
+        "path": "./csharp.json"
       }
     ]
   }

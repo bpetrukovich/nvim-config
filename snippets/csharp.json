@@ -1,0 +1,14 @@
+{
+  "timer": {
+    "prefix": "timer",
+    "body": [
+      "var sw = Stopwatch.StartNew();",
+      "",
+      "$0",
+      "",
+      "sw.Stop();",
+      "Console.WriteLine(sw.ElapsedMilliseconds);"
+    ],
+    "description": "Stopwatch timer for performance measurement"
+  }
+}
