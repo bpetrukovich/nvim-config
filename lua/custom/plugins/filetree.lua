@@ -1,7 +1,6 @@
 local function on_move(data)
   Snacks.rename.on_rename_file(data.source, data.destination)
 end
-local events = require 'neo-tree.events'
 ---@type neotree.Config.Base
 local config = {
   -- If a user has a sources list it will replace this one.
@@ -108,7 +107,22 @@ local config = {
     highlight_separator_active = 'NeoTreeTabSeparatorActive',
   },
 
-  event_handlers = { { event = events.FILE_MOVED, handler = on_move }, { event = events.FILE_RENAMED, handler = on_move } },
+  event_handlers = {
+    {
+      event = function()
+        local events = require 'neo-tree.events'
+        return events.FILE_MOVED
+      end,
+      handler = on_move,
+    },
+    {
+      event = function()
+        local events = require 'neo-tree.events'
+        return events.FILE_RENAMED
+      end,
+      handler = on_move,
+    },
+  },
   --
   --event_handlers = {
   --  {
