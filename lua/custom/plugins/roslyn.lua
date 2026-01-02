@@ -1,14 +1,6 @@
 return {
   'seblj/roslyn.nvim',
   ft = { 'cs', 'razor' },
-  dependencies = {
-    {
-      -- By loading as a dependencies, we ensure that we are available to set
-      -- the handlers for Roslyn.
-      'tris203/rzls.nvim',
-      config = true,
-    },
-  },
   -- opts = {
   --   config = {
   --     handlers = require 'rzls.roslyn_handlers',
