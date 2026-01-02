@@ -7,8 +7,8 @@ vim.keymap.set('n', '<C-f>', '<cmd>silent !tmux neww multi-sessionizer<CR>')
 -- Better paste in visual mode (don't lose register content)
 vim.keymap.set('x', '<leader>p', [["_dP]])
 
--- Open project view (Oil)
-vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = 'Open [P]roject [V]iew' })
+-- Open project view (uncomment if not using Oil)
+-- vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = 'Open [P]roject [V]iew' })
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
