@@ -4,7 +4,6 @@ return {
   dependencies = {
     'rafamadriz/friendly-snippets',
     'Kaiser-Yang/blink-cmp-avante',
-    'supermaven-inc/supermaven-nvim',
   },
 
   -- use a release tag to download pre-built binaries
