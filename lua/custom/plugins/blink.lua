@@ -4,6 +4,7 @@ return {
   dependencies = {
     'rafamadriz/friendly-snippets',
     'Kaiser-Yang/blink-cmp-avante',
+    'supermaven-inc/supermaven-nvim',
   },
 
   -- use a release tag to download pre-built binaries
@@ -47,7 +48,7 @@ return {
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
 
-      default = { 'avante', 'lsp', 'path', 'snippets', 'buffer', 'codeium', 'easy-dotnet' },
+      default = { 'avante', 'lsp', 'path', 'snippets', 'buffer', 'easy-dotnet' },
 
       providers = {
         codeium = {
