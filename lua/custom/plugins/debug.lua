@@ -75,7 +75,7 @@ return {
     vim.keymap.set('n', '<F10>', dap.step_over, { desc = 'Debug: Step Over' })
     vim.keymap.set('n', '<S-F11>', dap.step_out, { desc = 'Debug: Step Out' })
     vim.keymap.set('n', '<leader>dd', '<cmd>DapDisconnect<CR>', { desc = 'Debug: Disconnect' })
-    vim.keymap.set('n', '<leader>dt', '<cmd>DapTerminate<CR>', { desc = 'Debug: Terminate' })
+    vim.keymap.set('n', '<leader>dT', '<cmd>DapTerminate<CR>', { desc = 'Debug: Terminate' })
     vim.keymap.set('n', '<leader>do', dap.toggle_breakpoint, { desc = 'Debug: Toggle Breakpoint' })
     vim.keymap.set('n', '<F4>', '<cmd>PBToggleBreakpoint<CR>', { desc = 'Debug: Toggle Persistent Breakpoint' })
     vim.keymap.set('n', '<leader>dl', '<cmd>Telescope dap list_breakpoints<CR>', { desc = 'Debug: List Breakpoints' })
