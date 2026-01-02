@@ -24,23 +24,12 @@ vim.api.nvim_create_autocmd('BufRead', {
   end,
 })
 
--- Commented filetype specific indentation settings
--- vim.api.nvim_create_autocmd('FileType', {
---   pattern = 'html',
---   command = 'setlocal shiftwidth=2 tabstop=2',
--- })
---
--- vim.api.nvim_create_autocmd('FileType', {
---   pattern = 'javascript',
---   command = 'setlocal shiftwidth=2 tabstop=2',
--- })
---
--- vim.api.nvim_create_autocmd('FileType', {
---   pattern = 'typescript',
---   command = 'setlocal shiftwidth=2 tabstop=2',
--- })
---
--- vim.api.nvim_create_autocmd('FileType', {
---   pattern = 'css',
---   command = 'setlocal shiftwidth=2 tabstop=2',
--- })
+-- Snacks rename Oil integration
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'OilActionsPost',
+  callback = function(event)
+    if event.data.actions.type == 'move' then
+      Snacks.rename.on_rename_file(event.data.actions.src_url, event.data.actions.dest_url)
+    end
+  end,
+})
