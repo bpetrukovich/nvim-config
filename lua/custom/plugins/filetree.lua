@@ -1,6 +1,7 @@
 local function on_move(data)
   Snacks.rename.on_rename_file(data.source, data.destination)
 end
+vim.keymap.set('n', '-', '<Cmd>Neotree toggle<CR>')
 ---@type neotree.Config.Base
 local config = {
   -- If a user has a sources list it will replace this one.
@@ -486,6 +487,7 @@ local config = {
       -- The type of a and b are neotree.Help.Mapping
       ['<'] = 'prev_source',
       ['>'] = 'next_source',
+      -- ['-'] = 'close_window',
     },
   },
   filesystem = {
@@ -828,7 +830,9 @@ return {
     },
 
     lazy = false, -- neo-tree will lazily load itself
-
+    keys = {
+      { '(', ':Neotree toggle<CR>', desc = 'NeoTree toggle' },
+    },
     opts = config,
   },
 }
