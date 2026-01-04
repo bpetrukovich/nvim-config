@@ -8,6 +8,9 @@ return {
     require('grug-far').setup {
       -- options, see Configuration section below
       -- there are no required options atm
+      vim.keymap.set({ 'n' }, '<leader>sa', function()
+        require('grug-far').open {}
+      end, { desc = 'grug-far: Search' }),
     }
   end,
 }
