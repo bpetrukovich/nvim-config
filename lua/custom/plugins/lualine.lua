@@ -34,6 +34,10 @@ return {
       end,
     }
 
+    local function get_harpoon_indicator(harpoon_entry)
+      return vim.fn.fnamemodify(harpoon_entry.value, ':t')
+    end
+
     -- Config
     local config = {
       options = {
@@ -85,47 +89,7 @@ return {
       table.insert(config.sections.lualine_x, component)
     end
 
-    -- ins_left {
-    --   function()
-    --     return '▊'
-    --   end,
-    --   color = { fg = colors.blue }, -- Sets highlighting of component
-    --   padding = { left = 0, right = 1 }, -- We don't need space before this
-    -- }
-
-    -- ins_left {
-    --   -- mode component
-    --   function()
-    --     return ''
-    --   end,
-    --   color = function()
-    --     -- auto change color according to neovims mode
-    --     local mode_color = {
-    --       n = colors.red,
-    --       i = colors.green,
-    --       v = colors.blue,
-    --       [''] = colors.blue,
-    --       V = colors.blue,
-    --       c = colors.magenta,
-    --       no = colors.red,
-    --       s = colors.orange,
-    --       S = colors.orange,
-    --       [''] = colors.orange,
-    --       ic = colors.yellow,
-    --       R = colors.violet,
-    --       Rv = colors.violet,
-    --       cv = colors.red,
-    --       ce = colors.red,
-    --       r = colors.cyan,
-    --       rm = colors.cyan,
-    --       ['r?'] = colors.cyan,
-    --       ['!'] = colors.red,
-    --       t = colors.red,
-    --     }
-    --     return { fg = mode_color[vim.fn.mode()] }
-    --   end,
-    --   padding = { right = 1 },
-    -- }
+    ins_left { 'location' }
 
     ins_left {
       -- filesize component
@@ -133,35 +97,15 @@ return {
       cond = conditions.buffer_not_empty,
     }
 
-    ins_right {
-      'filetype',
-      color = { fg = colors.blue, gui = 'bold' },
+    ins_left {
+      'branch',
+      color = { fg = colors.violet, gui = 'bold' },
     }
 
     ins_left {
-      -- Lsp server name .
-      function()
-        local msg = 'No Active Lsp'
-        local buf_ft = vim.api.nvim_get_option_value('filetype', { buf = 0 })
-        local clients = vim.lsp.get_clients()
-        if next(clients) == nil then
-          return msg
-        end
-        for _, client in ipairs(clients) do
-          local filetypes = client.config.filetypes
-          if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-            return client.name
-          end
-        end
-        return msg
-      end,
-      icon = ' LSP:',
-      color = { fg = colors.fg, gui = 'bold' },
+      'filetype',
+      color = { fg = colors.blue, gui = 'bold' },
     }
-
-    ins_left { 'location' }
-
-    ins_left { 'progress', color = { fg = colors.fg, gui = 'bold' } }
 
     ins_left {
       'diagnostics',
@@ -189,48 +133,112 @@ return {
       color = { fg = colors.violet, gui = 'bold' },
     }
 
-    -- Add components to right sections
     ins_right {
-      'o:encoding', -- option component same as &encoding in viml
-      fmt = string.upper, -- I'm not sure why it's upper case either ;)
-      cond = conditions.hide_in_width,
-      color = { fg = colors.green, gui = 'bold' },
-    }
-
-    -- ins_right {
-    --   'fileformat',
-    --   fmt = string.upper,
-    --   icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
-    --   color = { fg = colors.green, gui = 'bold' },
-    -- }
-
-    ins_right {
-      'branch',
-      icon = '',
-      color = { fg = colors.violet, gui = 'bold' },
-    }
-
-    ins_right {
-      'diff',
-      -- Is it me or the symbol for modified us really weird
-      symbols = { added = ' ', modified = '󰝤 ', removed = ' ' },
-      diff_color = {
-        added = { fg = colors.green },
-        modified = { fg = colors.orange },
-        removed = { fg = colors.red },
+      'harpoon2',
+      icon = '♥',
+      indicators = {
+        get_harpoon_indicator,
+        get_harpoon_indicator,
+        get_harpoon_indicator,
+        get_harpoon_indicator,
       },
-      cond = conditions.hide_in_width,
+      active_indicators = {
+        get_harpoon_indicator,
+        get_harpoon_indicator,
+        get_harpoon_indicator,
+        get_harpoon_indicator,
+      },
+      color_active = { fg = '#00ff00' },
+      _separator = ' ',
+      no_harpoon = 'Harpoon not loaded',
     }
-
-    -- ins_right {
-    --   function()
-    --     return '▊'
-    --   end,
-    --   color = { fg = colors.blue },
-    --   padding = { left = 1 },
-    -- }
 
     -- Now don't forget to initialize lualine
     lualine.setup(config)
   end,
 }
+
+-- ins_left {
+--   function()
+--     return '▊'
+--   end,
+--   color = { fg = colors.blue }, -- Sets highlighting of component
+--   padding = { left = 0, right = 1 }, -- We don't need space before this
+-- }
+
+-- ins_left {
+--   -- mode component
+--   function()
+--     return ''
+--   end,
+--   color = function()
+--     -- auto change color according to neovims mode
+--     local mode_color = {
+--       n = colors.red,
+--       i = colors.green,
+--       v = colors.blue,
+--       [''] = colors.blue,
+--       V = colors.blue,
+--       c = colors.magenta,
+--       no = colors.red,
+--       s = colors.orange,
+--       S = colors.orange,
+--       [''] = colors.orange,
+--       ic = colors.yellow,
+--       R = colors.violet,
+--       Rv = colors.violet,
+--       cv = colors.red,
+--       ce = colors.red,
+--       r = colors.cyan,
+--       rm = colors.cyan,
+--       ['r?'] = colors.cyan,
+--       ['!'] = colors.red,
+--       t = colors.red,
+--     }
+--     return { fg = mode_color[vim.fn.mode()] }
+--   end,
+--   padding = { right = 1 },
+-- }
+-- ins_left {
+--   -- Lsp server name .
+--   function()
+--     local msg = 'No Active Lsp'
+--     local buf_ft = vim.api.nvim_get_option_value('filetype', { buf = 0 })
+--     local clients = vim.lsp.get_clients()
+--     if next(clients) == nil then
+--       return msg
+--     end
+--     for _, client in ipairs(clients) do
+--       local filetypes = client.config.filetypes
+--       if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+--         return client.name
+--       end
+--     end
+--     return msg
+--   end,
+--   icon = ' LSP:',
+--   color = { fg = colors.fg, gui = 'bold' },
+-- }
+
+-- Add components to right sections
+-- ins_right {
+--   'o:encoding', -- option component same as &encoding in viml
+--   fmt = string.upper, -- I'm not sure why it's upper case either ;)
+--   cond = conditions.hide_in_width,
+--   color = { fg = colors.green, gui = 'bold' },
+-- }
+
+-- ins_right {
+--   'fileformat',
+--   fmt = string.upper,
+--   icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
+--   color = { fg = colors.green, gui = 'bold' },
+-- }
+--
+-- ins_right {
+--   function()
+--     return '▊'
+--   end,
+--   color = { fg = colors.blue },
+--   padding = { left = 1 },
+-- }
