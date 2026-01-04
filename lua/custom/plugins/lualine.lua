@@ -4,20 +4,23 @@ return {
   config = function()
     local lualine = require 'lualine'
 
-    -- Color table for highlights
+    -- Color table for highlights (Kanagawa Dragon theme)
     -- stylua: ignore
     local colors = {
-      bg       = '#202328',
-      fg       = '#bbc2cf',
-      yellow   = '#ECBE7B',
-      cyan     = '#008080',
-      darkblue = '#081633',
-      green    = '#98be65',
-      orange   = '#FF8800',
-      violet   = '#a9a1e1',
-      magenta  = '#c678dd',
-      blue     = '#51afef',
-      red      = '#ec5f67',
+      bg       = '#282727',   -- dragon_black_3
+      fg       = '#c5c9c5',   -- dragon_white
+      yellow   = '#c4b28a',   -- dragon_yellow (harpoon highlight)
+      cyan     = '#8ea4a2',   -- dragon_aqua
+      darkblue = '#1D1C19',   -- dragon_black_2
+      green    = '#87a987',   -- dragon_green
+      orange   = '#b6927b',   -- dragon_orange
+      violet   = '#8992a7',   -- dragon_violet
+      magenta  = '#a292a3',   -- dragon_pink
+      blue     = '#658594',   -- dragon_blue
+      red      = '#c4746e',   -- dragon_red
+      ash      = '#737c73',   -- dragon_ash (harpoon normal)
+      teal     = '#949fb5',   -- dragon_teal
+      gray     = '#625e5a',   -- dragon_black_6
     }
 
     local conditions = {
@@ -35,7 +38,7 @@ return {
     }
 
     local function get_harpoon_indicator(harpoon_entry)
-      return vim.fn.fnamemodify(harpoon_entry.value, ':t')
+      return ' ' .. vim.fn.fnamemodify(harpoon_entry.value, ':t') .. ' '
     end
 
     -- Config
@@ -89,17 +92,21 @@ return {
       table.insert(config.sections.lualine_x, component)
     end
 
-    ins_left { 'location' }
+    ins_left {
+      'location',
+      color = { fg = colors.bg, bg = colors.orange, gui = 'bold' },
+    }
 
     ins_left {
       -- filesize component
       'filesize',
       cond = conditions.buffer_not_empty,
+      color = { fg = colors.bg, bg = colors.violet },
     }
 
     ins_left {
       'branch',
-      color = { fg = colors.violet, gui = 'bold' },
+      color = { fg = colors.red, gui = 'bold' },
     }
 
     ins_left {
@@ -113,8 +120,8 @@ return {
       symbols = { error = ' ', warn = ' ', info = ' ' },
       diagnostics_color = {
         error = { fg = colors.red },
-        warn = { fg = colors.yellow },
-        info = { fg = colors.cyan },
+        warn = { fg = colors.orange },
+        info = { fg = colors.teal },
       },
     }
 
@@ -130,12 +137,12 @@ return {
       'filename',
       path = 1,
       cond = conditions.buffer_not_empty,
-      color = { fg = colors.violet, gui = 'bold' },
+      color = { fg = colors.fg, gui = 'bold' },
     }
 
     ins_right {
       'harpoon2',
-      icon = '♥',
+      icon = false,
       indicators = {
         get_harpoon_indicator,
         get_harpoon_indicator,
@@ -148,9 +155,12 @@ return {
         get_harpoon_indicator,
         get_harpoon_indicator,
       },
-      color_active = { fg = '#00ff00' },
-      _separator = ' ',
+      color = { fg = colors.darkblue, bg = colors.ash },
+      color_active = { fg = colors.darkblue, bg = colors.yellow, gui = 'bold' },
+      _separator = '',
       no_harpoon = 'Harpoon not loaded',
+      padding = { left = 0, right = 0 },
+      cond = conditions.hide_in_width,
     }
 
     -- Now don't forget to initialize lualine
