@@ -32,7 +32,7 @@ return {
       options = {
         -- Display the source of diagnostics (e.g., "lua_ls", "pyright")
         show_source = {
-          enabled = false, -- Enable showing source names
+          enabled = true, -- Enable showing source names
           if_many = false, -- Only show source if multiple sources exist for the same diagnostic
         },
 
@@ -62,7 +62,7 @@ return {
 
         -- Settings for multiline diagnostics
         multilines = {
-          enabled = false, -- Enable support for multiline diagnostic messages
+          enabled = true, -- Enable support for multiline diagnostic messages
           always_show = false, -- Always show messages on all lines of multiline diagnostics
           trim_whitespaces = false, -- Remove leading/trailing whitespace from each line
           tabstop = 4, -- Number of spaces per tab when expanding tabs
