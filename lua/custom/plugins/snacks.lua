@@ -424,13 +424,13 @@ return {
     },
 
     -- Search text
-    {
-      '<leader>sg',
-      function()
-        Snacks.picker.grep()
-      end,
-      desc = '[S]earch by [G]rep',
-    },
+    -- {
+    --   '<leader>sg',
+    --   function()
+    --     Snacks.picker.grep()
+    --   end,
+    --   desc = '[S]earch by [G]rep',
+    -- },
     {
       '<leader>sw',
       function()
