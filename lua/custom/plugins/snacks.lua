@@ -131,7 +131,7 @@ local pickerOpts = {
       args = {}, -- additional arguments passed to the git command. Useful to set pager options usin `-c ...`
     },
     file = {
-      max_size = 1024 * 1024, -- 1MB
+      max_size = 1024 * 200, -- 200 KB
       max_line_length = 500, -- max line length
       ft = nil, ---@type string? filetype for highlighting. Use `nil` for auto detect
     },
