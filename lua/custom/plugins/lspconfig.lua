@@ -16,17 +16,14 @@ return { -- LSP Configuration & Plugins
           vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
         end
 
-        map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+        local picker = require('snacks').picker
 
-        map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-
-        map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-
-        map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
-
-        map('<leader>sl', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-
-        map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+        map('gd', picker.lsp_definitions, '[G]oto [D]efinition')
+        map('gr', picker.lsp_references, '[G]oto [R]eferences')
+        map('gI', picker.lsp_implementations, '[G]oto [I]mplementation')
+        map('<leader>D', picker.lsp_type_definitions, 'Type [D]efinition')
+        map('<leader>sl', picker.lsp_symbols, '[D]ocument [S]ymbols')
+        map('<leader>ws', picker.lsp_workspace_symbols, '[W]orkspace [S]ymbols')
 
         map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
 
