@@ -504,7 +504,7 @@ return {
       desc = 'Command History',
     },
     {
-      '<leader>lg',
+      '<leader>l',
       function()
         Snacks.lazygit()
       end,
