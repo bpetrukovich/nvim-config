@@ -19,11 +19,9 @@ return { -- LSP Configuration & Plugins
         local picker = require('snacks').picker
 
         map('gd', picker.lsp_definitions, '[G]oto [D]efinition')
-        map('gr', picker.lsp_references, '[G]oto [R]eferences')
         map('gI', picker.lsp_implementations, '[G]oto [I]mplementation')
         map('<leader>D', picker.lsp_type_definitions, 'Type [D]efinition')
-        map('<leader>sl', picker.lsp_symbols, '[D]ocument [S]ymbols')
-        map('<leader>ws', picker.lsp_workspace_symbols, '[W]orkspace [S]ymbols')
+        map('<leader>ws', picker.lsp_workspace_symbols, '[W]orkspace [S]ymbols') -- TODO: bad bad picker
 
         map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
 

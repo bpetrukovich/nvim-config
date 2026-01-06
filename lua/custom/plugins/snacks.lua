@@ -475,13 +475,13 @@ return {
     },
 
     -- Buffers & Recent
-    {
-      '<leader>bb',
-      function()
-        Snacks.picker.buffers()
-      end,
-      desc = 'Find existing [B]uffers',
-    }, -- TODO: replace with neotree
+    -- {
+    --   '<leader>bb', -- bad layout, commented out rn to neo tree
+    --   function()
+    --     Snacks.picker.buffers()
+    --   end,
+    --   desc = 'Find existing [B]uffers',
+    -- },
     {
       '<leader>s.',
       function()
@@ -513,13 +513,6 @@ return {
       desc = '[S]earch [S]elect Picker',
     },
     {
-      '<leader>sd',
-      function()
-        Snacks.picker.diagnostics() -- TODO: never used
-      end,
-      desc = '[S]earch [D]iagnostics',
-    },
-    {
       '<leader>sr',
       function()
         Snacks.picker.resume()
@@ -537,13 +530,13 @@ return {
     },
 
     -- LSP (these will work when buffer has LSP attached)
-    {
-      '<leader>sl',
-      function()
-        Snacks.picker.lsp_symbols()
-      end,
-      desc = '[S]ymbols [L]ist (document)',
-    }, -- TODO: very bad
+    -- {
+    --   '<leader>sl',
+    --   function()
+    --     Snacks.picker.lsp_symbols()
+    --   end,
+    --   desc = '[S]ymbols [L]ist (document)',
+    -- }, very bad,
     {
       '<leader>ws',
       function()
