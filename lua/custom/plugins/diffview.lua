@@ -2,6 +2,19 @@ return {
   'sindrets/diffview.nvim',
 
   config = function()
+    local diffview_commit = function()
+      vim.ui.input({
+        prompt = 'Base commit (hash / ref): ',
+      }, function(commit)
+        if not commit or commit == '' then
+          return
+        end
+
+        -- commit...HEAD — стандартный git diff range
+        vim.cmd('DiffviewOpen ' .. commit .. '...HEAD --imply-local')
+      end)
+    end
+
     local diffview_pr = function()
       local lines = vim.fn.systemlist 'git branch -r --format="%(refname:short)"'
 
@@ -47,6 +60,7 @@ return {
     vim.keymap.set('n', '<leader>cb', '<cmd>DiffviewFileHistory %<CR>', { desc = 'File History' })
     vim.keymap.set('n', '<leader>cd', '<cmd>DiffviewClose<CR>', { desc = 'Close' })
     vim.keymap.set('n', '<leader>pr', diffview_pr, { desc = 'Pull Request review' })
+    vim.keymap.set('n', '<leader>pc', diffview_commit, { desc = 'Commit diff review' })
     -- Lua
     local actions = require 'diffview.actions'
 
