@@ -812,8 +812,8 @@ return {
       's1n7ax/nvim-window-picker',
       version = '2.*',
       config = function()
-        vim.keymap.set('n', '-', '<Cmd>Neotree toggle<CR>')
-        vim.keymap.set('n', '<leader>bb', '<Cmd>Neotree toggle buffers<CR>', { desc = 'Toggle Neotree Buffers' })
+        vim.keymap.set('n', '-', '<Cmd>Neotree<CR>')
+        vim.keymap.set('n', '<leader>bb', '<Cmd>Neotree buffers<CR>', { desc = 'Toggle Neotree Buffers' })
         require('window-picker').setup {
           filter_rules = {
             include_current_win = false,

@@ -496,15 +496,6 @@ return {
       end,
       desc = '[S]earch [R]esume',
     },
-
-    -- Git
-    {
-      '<leader>sb',
-      function()
-        Snacks.picker.git_branches()
-      end,
-      desc = '[S]earch [B]ranches',
-    },
     {
       '<leader>:',
       function()

@@ -28,6 +28,7 @@ return { -- Useful plugin to show you pending keybinds.
       -- ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
       -- ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
       -- ['<leader>h'] = { name = 'Git [H]unk', _ = 'which_key_ignore' },
+      { '<leader>c', group = '[B]uffer' },
       { '<leader>c', group = '[C]ode' },
       { '<leader>d', group = '[D]ocument' },
       { '<leader>h', group = 'Git [H]unk' },
