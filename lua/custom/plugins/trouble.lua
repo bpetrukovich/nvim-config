@@ -193,7 +193,7 @@ return {
       desc = 'Buffer Diagnostics (Trouble)',
     },
     {
-      '<leader>cs',
+      '<leader>bs',
       '<cmd>Trouble symbols toggle focus=false<cr>',
       desc = 'Symbols (Trouble)',
     },
@@ -201,11 +201,6 @@ return {
       'gr',
       '<cmd>Trouble lsp_references toggle focus=true groups=false --[[ win.position=right win.size=50 ]]<cr>',
       desc = 'LSP references (Trouble)',
-    },
-    {
-      '<leader>cl', -- TODO: think about keymap
-      '<cmd>Trouble lsp toggle focus=false win.position=right<cr>',
-      desc = 'LSP Definitions / references / ... (Trouble)',
     },
     {
       '<leader>xl',
@@ -218,7 +213,7 @@ return {
       desc = 'Quickfix List (Trouble)',
     },
     {
-      '<leader>tD',
+      '<leader>tt',
       '<cmd>Trouble todo<cr>',
       desc = 'Todo List (Trouble)',
     },
