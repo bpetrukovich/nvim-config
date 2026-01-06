@@ -1,10 +1,6 @@
 return {
   'sindrets/diffview.nvim',
 
-  -- view = {
-  --   ['<leader>e'] = false,
-  -- },
-
   config = function()
     local diffview_pr = function()
       local lines = vim.fn.systemlist 'git branch -r --format="%(refname:short)"'
