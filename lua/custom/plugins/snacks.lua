@@ -174,7 +174,7 @@ local pickerOpts = {
         ['<Up>'] = { 'list_up', mode = { 'i', 'n' } },
         ['<a-d>'] = { 'inspect', mode = { 'n', 'i' } },
         ['<a-f>'] = { 'toggle_follow', mode = { 'i', 'n' } },
-        ['<a-h>'] = { 'toggle_hidden', mode = { 'i', 'n' } },
+        ['<a-h>'] = { 'toggle_hidden', mode = { 'i', 'n' } }, -- TODO: doesn't work, because of my own tmux keybindings
         ['<a-i>'] = { 'toggle_ignored', mode = { 'i', 'n' } },
         ['<a-r>'] = { 'toggle_regex', mode = { 'i', 'n' } },
         ['<a-m>'] = { 'toggle_maximize', mode = { 'i', 'n' } },
@@ -190,8 +190,8 @@ local pickerOpts = {
         ['<c-n>'] = { 'list_down', mode = { 'i', 'n' } },
         ['<c-p>'] = { 'list_up', mode = { 'i', 'n' } },
         ['<c-q>'] = { 'qflist', mode = { 'i', 'n' } },
-        ['<c-s>'] = { 'edit_split', mode = { 'i', 'n' } },
-        ['<c-t>'] = { 'tab', mode = { 'n', 'i' } },
+        -- ['<c-s>'] = { 'edit_split', mode = { 'i', 'n' } }, -- useless for me, TODO: can change
+        -- ['<c-t>'] = { 'tab', mode = { 'n', 'i' } }, -- trouble
         ['<c-u>'] = { 'list_scroll_up', mode = { 'i', 'n' } },
         ['<c-v>'] = { 'edit_vsplit', mode = { 'i', 'n' } },
         ['<c-r>#'] = { 'insert_alt', mode = 'i' },
@@ -230,7 +230,7 @@ local pickerOpts = {
         ['<Up>'] = 'list_up',
         ['<a-d>'] = 'inspect',
         ['<a-f>'] = 'toggle_follow',
-        ['<a-h>'] = 'toggle_hidden',
+        ['<a-h>'] = 'toggle_hidden', -- TODO: doesn't work, because of my own tmux keybindings
         ['<a-i>'] = 'toggle_ignored',
         ['<a-m>'] = 'toggle_maximize',
         ['<a-p>'] = 'toggle_preview',
@@ -245,8 +245,8 @@ local pickerOpts = {
         ['<c-p>'] = 'list_up',
         ['<c-q>'] = 'qflist',
         ['<c-g>'] = 'print_path',
-        ['<c-s>'] = 'edit_split',
-        ['<c-t>'] = 'tab',
+        -- ['<c-s>'] = 'edit_split',
+        -- ['<c-t>'] = 'tab', -- trouble
         ['<c-u>'] = 'list_scroll_up',
         ['<c-v>'] = 'edit_vsplit',
         ['<c-w>H'] = 'layout_left',
@@ -337,22 +337,6 @@ return {
         Snacks.zen.zoom()
       end,
       desc = 'Toggle Zoom',
-    },
-
-    -- Scratch
-    {
-      '<leader>.',
-      function()
-        Snacks.scratch()
-      end,
-      desc = 'Toggle Scratch Buffer',
-    },
-    {
-      '<leader>S',
-      function()
-        Snacks.scratch.select()
-      end,
-      desc = 'Select Scratch Buffer',
     },
 
     -- Notifications
@@ -446,13 +430,13 @@ return {
       end,
       desc = '[/] Search in current buffer',
     },
-    {
-      '<leader>s/',
-      function()
-        Snacks.picker.grep_buffers()
-      end,
-      desc = '[S]earch [/] in Open Files',
-    },
+    -- {
+    --   '<leader>s/',
+    --   function()
+    --     Snacks.picker.grep_buffers()
+    --   end,
+    --   desc = '[S]earch [/] in Open Files',
+    -- },
 
     -- Grep with test exclusions/inclusions
     {
@@ -528,22 +512,6 @@ return {
       end,
       desc = '[S]earch [B]ranches',
     },
-
-    -- LSP (these will work when buffer has LSP attached)
-    -- {
-    --   '<leader>sl',
-    --   function()
-    --     Snacks.picker.lsp_symbols()
-    --   end,
-    --   desc = '[S]ymbols [L]ist (document)',
-    -- }, very bad,
-    {
-      '<leader>ws',
-      function()
-        Snacks.picker.lsp_workspace_symbols()
-      end,
-      desc = '[W]orkspace [S]ymbols',
-    }, -- TODO: never used
     {
       '<leader>:',
       function()
