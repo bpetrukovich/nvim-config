@@ -126,6 +126,11 @@ return { -- LSP Configuration & Plugins
         function(server_name)
           local server = servers[server_name] or {}
           server.capabilities = require('blink.cmp').get_lsp_capabilities(server.capabilities)
+          server.capabilities.textDocument.foldingRange = {
+            dynamicRegistration = false,
+            lineFoldingOnly = true,
+          }
+
           require('lspconfig')[server_name].setup(server)
         end,
       },
