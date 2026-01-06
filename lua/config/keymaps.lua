@@ -5,7 +5,7 @@
 vim.keymap.set('n', '<C-f>', '<cmd>silent !tmux neww multi-sessionizer<CR>')
 
 -- Better paste in visual mode (don't lose register content)
-vim.keymap.set('x', '<leader>p', [["_dP]])
+vim.keymap.set('x', '<leader>p', [["_dP]], { desc = 'Paste without corrupting the register' })
 
 -- Open project view (uncomment if not using Oil)
 -- vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = 'Open [P]roject [V]iew' })
@@ -40,12 +40,16 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 -- Obsidian lazy loading
 vim.keymap.set('n', '<leader>oo', function()
   require('lazy').load { plugins = { 'obsidian.nvim' } }
-end)
+end, { desc = 'Load Obsidian' })
 
-vim.keymap.set('n', '<leader>wo', '<cmd>!wsl-open .<CR>')
+vim.keymap.set('n', '<leader>wo', '<cmd>!wsl-open .<CR>', { desc = 'Open cwd in external file explorer' })
 
 -- Delete conflicting keymaps
 vim.keymap.del('n', 'grn')
 vim.keymap.del('n', 'gra')
 vim.keymap.del('n', 'gri')
 vim.keymap.del('n', 'grr')
+
+-- Tabs
+vim.keymap.set('n', '<leader>tc', '<cmd>tabclose<CR>', { desc = 'Tab Close' })
+vim.keymap.set('n', '<leader>tn', '<cmd>tabnew<CR>', { desc = 'Tab Close' })

@@ -7,6 +7,6 @@ return {
   end,
   ft = { 'markdown' },
   config = function()
-    vim.keymap.set('n', '<leader>mp', '<cmd>MarkdownPreview<CR>', { desc = 'Markdown Preview' })
+    vim.keymap.set('n', '<leader>mp', '<cmd>MarkdownPreview<CR>', { desc = 'Preview' })
   end,
 }

@@ -1,7 +1,6 @@
 local function on_move(data)
   Snacks.rename.on_rename_file(data.source, data.destination)
 end
-vim.keymap.set('n', '-', '<Cmd>Neotree toggle<CR>')
 ---@type neotree.Config.Base
 local config = {
   -- If a user has a sources list it will replace this one.
@@ -813,6 +812,8 @@ return {
       's1n7ax/nvim-window-picker',
       version = '2.*',
       config = function()
+        vim.keymap.set('n', '-', '<Cmd>Neotree toggle<CR>')
+        vim.keymap.set('n', '<leader>bb', '<Cmd>Neotree toggle buffers<CR>', { desc = 'Toggle Neotree Buffers' })
         require('window-picker').setup {
           filter_rules = {
             include_current_win = false,
@@ -831,7 +832,7 @@ return {
 
     lazy = false, -- neo-tree will lazily load itself
     keys = {
-      { '(', ':Neotree toggle<CR>', desc = 'NeoTree toggle' },
+      -- { '(', ':Neotree toggle<CR>', desc = 'NeoTree toggle' },
     },
     opts = config,
   },

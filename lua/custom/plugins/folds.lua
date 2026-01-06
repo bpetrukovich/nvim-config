@@ -18,8 +18,8 @@ return {
       foldsep = ' ',
     }
 
-    vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
-    vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+    vim.keymap.set('n', 'zR', require('ufo').openAllFolds, { desc = 'Open all folds' })
+    vim.keymap.set('n', 'zM', require('ufo').closeAllFolds, { desc = 'Close all folds' })
 
     vim.api.nvim_create_autocmd('FileType', {
       group = vim.api.nvim_create_augroup('local_detach_ufo', { clear = true }),

@@ -37,7 +37,7 @@ return { -- Useful plugin to show you pending keybinds.
       { '<leader>w', group = '[W]orkspace' },
       { '<leader>h', desc = 'Git [H]unk', mode = 'v' },
       { '<leader>g', desc = '[G]it' },
-      { '<leader>m', desc = '[M]ake HTTP...' },
+      { '<leader>m', desc = '[M]arkdown' },
       { '<leader>p', desc = '[P]roject' },
       { '<leader>x', desc = 'Trouble' },
     }
