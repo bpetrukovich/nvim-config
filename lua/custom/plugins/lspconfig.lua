@@ -18,6 +18,23 @@ return { -- LSP Configuration & Plugins
 
         local picker = require('snacks').picker
 
+        local function ws_symbols(kinds, desc)
+          return function()
+            Snacks.picker.lsp_workspace_symbols {
+              tree = false,
+              live = true,
+              filter = {
+                default = kinds,
+              },
+              layout = {
+                preset = 'sidebar',
+                layout = { position = 'right' },
+              },
+            }
+          end,
+            desc
+        end
+
         map('gd', picker.lsp_definitions, '[G]oto [D]efinition')
         map('gI', picker.lsp_implementations, '[G]oto [I]mplementation')
         map('<leader>D', picker.lsp_type_definitions, 'Type [D]efinition')
@@ -30,6 +47,16 @@ return { -- LSP Configuration & Plugins
             },
           }
         end, '[W]orkspace [S]ymbols')
+        -- Classes / Structs / Interfaces
+        map('<leader>wc', ws_symbols({ 'Class', 'Struct', 'Interface' }, '[W]orkspace [C]lasses'))
+        -- Functions / Methods
+        map('<leader>wm', ws_symbols({ 'Function', 'Method' }, '[W]orkspace [F]unctions'))
+        -- Enums
+        map('<leader>we', ws_symbols({ 'Enum' }, '[W]orkspace [E]nums'))
+        -- Properties / Fields
+        map('<leader>wp', ws_symbols({ 'Property', 'Field' }, '[W]orkspace [P]roperties'))
+        -- Namespaces / Modules
+        map('<leader>wn', ws_symbols({ 'Namespace', 'Module' }, '[W]orkspace [N]amespaces'))
 
         map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
 
