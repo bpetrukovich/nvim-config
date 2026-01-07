@@ -51,5 +51,5 @@ vim.keymap.del('n', 'gri')
 vim.keymap.del('n', 'grr')
 
 -- Tabs
-vim.keymap.set('n', '<leader>tc', '<cmd>tabclose<CR>', { desc = 'Tab Close' })
-vim.keymap.set('n', '<leader>tn', '<cmd>tabnew<CR>', { desc = 'Tab Close' })
+vim.keymap.set('n', '<leader>td', '<cmd>tabclose<CR>', { desc = 'Tab Delete' })
+vim.keymap.set('n', '<leader>tn', '<cmd>tabnew<CR>', { desc = 'Tab New' })
