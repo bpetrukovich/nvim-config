@@ -214,8 +214,8 @@ return {
     },
     {
       '<leader>tt',
-      '<cmd>Trouble todo<cr>',
+      '<cmd>Trouble todo focus=true<cr>',
       desc = 'Todo List (Trouble)',
-    }, -- TODO: maybe disable groups
+    },
   },
 }

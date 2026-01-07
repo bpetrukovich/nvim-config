@@ -198,7 +198,7 @@ local pickerOpts = {
         ['<Up>'] = { 'list_up', mode = { 'i', 'n' } },
         ['<a-d>'] = { 'inspect', mode = { 'n', 'i' } },
         ['<a-f>'] = { 'toggle_follow', mode = { 'i', 'n' } },
-        ['<a-h>'] = { 'toggle_hidden', mode = { 'i', 'n' } }, -- TODO: doesn't work, because of my own tmux keybindings
+        -- ['<a-h>'] = { 'toggle_hidden', mode = { 'i', 'n' } }, -- doesn't work, because of my own tmux keybindings
         ['<a-i>'] = { 'toggle_ignored', mode = { 'i', 'n' } },
         ['<a-r>'] = { 'toggle_regex', mode = { 'i', 'n' } },
         ['<a-m>'] = { 'toggle_maximize', mode = { 'i', 'n' } },
@@ -214,7 +214,7 @@ local pickerOpts = {
         ['<c-n>'] = { 'list_down', mode = { 'i', 'n' } },
         ['<c-p>'] = { 'list_up', mode = { 'i', 'n' } },
         ['<c-q>'] = { 'qflist', mode = { 'i', 'n' } },
-        -- ['<c-s>'] = { 'edit_split', mode = { 'i', 'n' } }, -- useless for me, TODO: can change
+        -- ['<c-s>'] = { 'edit_split', mode = { 'i', 'n' } }, -- useless for me
         -- ['<c-t>'] = { 'tab', mode = { 'n', 'i' } }, -- trouble
         ['<c-u>'] = { 'list_scroll_up', mode = { 'i', 'n' } },
         ['<c-v>'] = { 'edit_vsplit', mode = { 'i', 'n' } },
@@ -258,7 +258,7 @@ local pickerOpts = {
         ['<Up>'] = 'list_up',
         ['<a-d>'] = 'inspect',
         ['<a-f>'] = 'toggle_follow',
-        ['<a-h>'] = 'toggle_hidden', -- TODO: doesn't work, because of my own tmux keybindings
+        -- ['<a-h>'] = 'toggle_hidden', doesn't work, because of my own tmux keybindings
         ['<a-i>'] = 'toggle_ignored',
         ['<a-m>'] = 'toggle_maximize',
         ['<a-p>'] = 'toggle_preview',
@@ -354,7 +354,7 @@ return {
     profiler = { enabled = false },
     lazygit = { enabled = true },
   },
-  keys = { -- TODO: improve layouts
+  keys = {
     -- Zen mode
     {
       '<leader>z',

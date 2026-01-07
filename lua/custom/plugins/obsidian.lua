@@ -104,6 +104,7 @@ return {
       },
     },
 
+    -- FIX: need to fix this
     -- Optional, customize how note IDs are generated given an optional title.
     ---@param title string|?
     ---@return string
@@ -158,7 +159,6 @@ return {
 
     picker = {
       -- Set your preferred picker. Can be one of 'telescope.nvim', 'fzf-lua', 'mini.pick' or 'snacks.pick'.
-      -- TODO: change to snacks
       name = 'snacks.pick',
       -- Optional, configure key mappings for the picker. These are the defaults.
       -- Not all pickers support all mappings.

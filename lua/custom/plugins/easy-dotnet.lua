@@ -117,8 +117,7 @@ return {
       -- if no picker is specified, the plugin will determine
       -- the available one automatically with this priority:
       -- telescope -> fzf -> snacks ->  basic
-      -- TODO: change to snacks
-      picker = 'telescope',
+      picker = 'snacks',
       background_scanning = true,
       notifications = {
         --Set this to false if you have configured lualine to avoid double logging
