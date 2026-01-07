@@ -11,6 +11,11 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
     on_attach = function(bufnr)
       local gitsigns = require 'gitsigns'
 
+      -- Correct fileformat for right gitsigns indication
+      if vim.bo.fileformat == 'dos' then
+        vim.bo.fileformat = 'unix'
+      end
+
       local function map(mode, l, r, opts)
         opts = opts or {}
         opts.buffer = bufnr
@@ -56,7 +61,7 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
       end, { desc = 'git [D]iff against last commit' })
       -- Toggles
       map('n', '<leader>tb', gitsigns.toggle_current_line_blame, { desc = '[T]oggle git show [b]lame line' })
-      map('n', '<leader>td', gitsigns.toggle_deleted, { desc = '[T]oggle git show [D]eleted' })
+      map('n', '<leader>tg', gitsigns.toggle_deleted, { desc = '[T]oggle [g]it show deleted' })
     end,
   },
 }
