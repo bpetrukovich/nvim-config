@@ -1,3 +1,24 @@
+local layouts = require 'snacks.picker.config.layouts'
+layouts.ivy.layout.height = 0.5
+layouts.ivy.layout[2][2].width = 0.6
+layouts.ivy_taller = vim.tbl_deep_extend('keep', { layout = { height = 0.8 } }, layouts.ivy)
+local idx = 1
+local preferred = {
+  'ivy',
+  -- 'ivy_wider_results',
+  -- 'ivy_wider_preview',
+  'ivy_taller',
+}
+
+local preferred_layout = function()
+  return preferred[idx]
+end
+
+local set_next_preferred_layout = function(picker)
+  idx = idx % #preferred + 1
+  picker:set_layout(preferred[idx])
+end
+
 ---@class snacks.picker.Config
 ---@field multi? (string|snacks.picker.Config)[]
 ---@field source? string source name and config to use
@@ -60,9 +81,10 @@ local pickerOpts = {
   layout = {
     cycle = true,
     --- Use the default layout or vertical if the window is too narrow
-    preset = function()
-      return vim.o.columns >= 120 and 'default' or 'vertical'
-    end,
+    preset = preferred_layout,
+    -- preset = function()
+    --   return vim.o.columns >= 120 and 'default' or 'vertical'
+    -- end,
   },
   ---@class snacks.picker.matcher.Config
   matcher = {
@@ -152,7 +174,9 @@ local pickerOpts = {
     modified = 'm',
     regex = { icon = 'R', value = false },
   },
-  -- actions = require('trouble.sources.snacks').actions,
+  actions = {
+    cycle_layouts = set_next_preferred_layout,
+  },
   win = {
     -- input window
     input = {
@@ -214,6 +238,7 @@ local pickerOpts = {
         ['j'] = 'list_down',
         ['k'] = 'list_up',
         ['q'] = 'cancel',
+        ['<a-c>'] = { 'cycle_layouts', mode = { 'i', 'n' } },
       },
       b = {
         minipairs_disable = true,
@@ -269,6 +294,7 @@ local pickerOpts = {
         ['zb'] = 'list_scroll_bottom',
         ['zt'] = 'list_scroll_top',
         ['zz'] = 'list_scroll_center',
+        ['<a-c>'] = { 'cycle_layouts', mode = { 'i', 'n' } },
       },
       wo = {
         conceallevel = 2,
