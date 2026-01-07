@@ -216,6 +216,6 @@ return {
       '<leader>tt',
       '<cmd>Trouble todo<cr>',
       desc = 'Todo List (Trouble)',
-    },
+    }, -- TODO: maybe disable groups
   },
 }
