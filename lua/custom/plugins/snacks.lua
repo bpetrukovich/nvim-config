@@ -205,6 +205,9 @@ local pickerOpts = {
         ['<c-w>J'] = 'layout_bottom',
         ['<c-w>K'] = 'layout_top',
         ['<c-w>L'] = 'layout_right',
+        ['<c-w>j'] = 'focus_list',
+        ['<c-w>k'] = 'focus_input',
+        ['<c-w>l'] = 'focus_preview',
         ['?'] = 'toggle_help_input',
         ['G'] = 'list_bottom',
         ['gg'] = 'list_top',
@@ -253,6 +256,9 @@ local pickerOpts = {
         ['<c-w>J'] = 'layout_bottom',
         ['<c-w>K'] = 'layout_top',
         ['<c-w>L'] = 'layout_right',
+        ['<c-w>j'] = 'focus_list',
+        ['<c-w>k'] = 'focus_input',
+        ['<c-w>l'] = 'focus_preview',
         ['?'] = 'toggle_help_list',
         ['G'] = 'list_bottom',
         ['gg'] = 'list_top',
@@ -401,13 +407,13 @@ return {
     },
 
     -- Search text
-    -- {
-    --   '<leader>sg',
-    --   function()
-    --     Snacks.picker.grep()
-    --   end,
-    --   desc = '[S]earch by [G]rep',
-    -- },
+    {
+      '<leader>sg',
+      function()
+        Snacks.picker.grep()
+      end,
+      desc = '[S]earch by [G]rep',
+    },
     {
       '<leader>sw',
       function()
