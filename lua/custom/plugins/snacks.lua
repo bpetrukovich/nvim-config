@@ -156,7 +156,7 @@ local pickerOpts = {
   win = {
     -- input window
     input = {
-      keys = {
+      keys = { -- TODO: improve keymaps
         -- to close the picker on ESC instead of going to normal mode,
         -- add the following keymap to your config
         -- ["<Esc>"] = { "close", mode = { "n", "i" } },
@@ -322,7 +322,7 @@ return {
     profiler = { enabled = false },
     lazygit = { enabled = true },
   },
-  keys = {
+  keys = { -- TODO: improve layouts
     -- Zen mode
     {
       '<leader>z',
