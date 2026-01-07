@@ -506,7 +506,7 @@ local config = {
         ['[g'] = 'prev_git_modified',
         [']g'] = 'next_git_modified',
         ['i'] = 'show_file_details', -- see `:h neo-tree-file-actions` for options to customize the window.
-        ['b'] = 'rename_basename',
+        -- ['b'] = 'rename_basename',
         ['o'] = { 'show_help', nowait = false, config = { title = 'Order by', prefix_key = 'o' } },
         ['oc'] = { 'order_by_created', nowait = false },
         ['od'] = { 'order_by_diagnostics', nowait = false },
@@ -657,7 +657,7 @@ local config = {
         ['d'] = 'buffer_delete',
         ['bd'] = 'buffer_delete',
         ['i'] = 'show_file_details', -- see `:h neo-tree-file-actions` for options to customize the window.
-        ['b'] = 'rename_basename',
+        -- ['b'] = 'rename_basename',
         ['o'] = { 'show_help', nowait = false, config = { title = 'Order by', prefix_key = 'o' } },
         ['oc'] = { 'order_by_created', nowait = false },
         ['od'] = { 'order_by_diagnostics', nowait = false },
@@ -681,7 +681,7 @@ local config = {
         ['gp'] = 'git_push',
         ['gg'] = 'git_commit_and_push',
         ['i'] = 'show_file_details', -- see `:h neo-tree-file-actions` for options to customize the window.
-        ['b'] = 'rename_basename',
+        -- ['b'] = 'rename_basename',
         ['o'] = { 'show_help', nowait = false, config = { title = 'Order by', prefix_key = 'o' } },
         ['oc'] = { 'order_by_created', nowait = false },
         ['od'] = { 'order_by_diagnostics', nowait = false },
@@ -812,8 +812,8 @@ return {
       's1n7ax/nvim-window-picker',
       version = '2.*',
       config = function()
-        vim.keymap.set('n', '-', '<Cmd>Neotree<CR>')
-        vim.keymap.set('n', '<leader>bb', '<Cmd>Neotree buffers<CR>', { desc = 'Toggle Neotree Buffers' })
+        vim.keymap.set('n', '-', '<Cmd>Neotree toggle<CR>')
+        vim.keymap.set('n', '<leader>bb', '<Cmd>Neotree buffers toggle<CR>', { desc = 'Toggle Neotree Buffers' })
         require('window-picker').setup {
           filter_rules = {
             include_current_win = false,
