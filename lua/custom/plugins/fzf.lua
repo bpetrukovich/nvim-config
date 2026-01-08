@@ -12,5 +12,9 @@ return {
     vim.keymap.set('n', '<leader>fr', function()
       require('fzf-lua').resume()
     end, { desc = 'fzf Resume' })
+
+    vim.keymap.set('n', '<leader>ft', function()
+      require('fzf-lua').filetypes()
+    end, { desc = 'fzf Change Filetype' })
   end,
 }
