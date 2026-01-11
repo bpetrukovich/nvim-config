@@ -134,9 +134,13 @@ return {
     }
 
     ins_left {
-      'filename',
-      path = 1,
-      cond = conditions.buffer_not_empty,
+      function()
+        if vim.bo.filetype == 'oil' then
+          local dir = require('oil').get_current_dir()
+          return dir and vim.fn.fnamemodify(dir, ':~') or ''
+        end
+        return vim.fn.expand '%:p:~'
+      end,
       color = { fg = colors.fg, gui = 'bold' },
     }
 
