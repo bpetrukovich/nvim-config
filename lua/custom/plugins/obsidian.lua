@@ -1,3 +1,16 @@
+local default_id_func = function(title)
+  local date_str = os.date '%Y%m%d'
+  local suffix = ''
+  if title ~= nil then
+    return title
+  else
+    for _ = 1, 4 do
+      suffix = suffix .. string.char(math.random(97, 122))
+    end
+  end
+  return date_str .. '-' .. suffix
+end
+
 return {
   'obsidian-nvim/obsidian.nvim',
   version = '*', -- recommended, use latest release instead of latest commit
@@ -21,11 +34,9 @@ return {
   ---@module 'obsidian'
   ---@type obsidian.config
   opts = {
-    -- TODO: remove these in 4.0.0
     legacy_commands = false,
     -- note_frontmatter_func = require('obsidian.builtin').frontmatter,
 
-    -- TODO:: replace with more general options before 4.0.0
     notes_subdir = 'main',
     new_notes_location = 'notes_subdir',
 
@@ -43,22 +54,10 @@ return {
       local date_str = os.date '%Y%m%d'
       local suffix = ''
       if title ~= nil then
-        -- NOTE: Можно будет при надобности сделать чтобы любой татл с префиксом по типу XX- не добалял префикс
-        if title:match '^PP%-' or title:match '^IN%-' or title:match '^EN%-' then
-          return title
-        end
-        -- Для английских названий: lowercase, дефисы, только безопасные символы
-        suffix = title
-          :gsub('%s+', '-') -- Заменяем пробелы на дефисы
-          :gsub('[^%w%-]', '') -- Удаляем все кроме букв, цифр и дефисов
-          :gsub('-+', '-') -- Объединяем множественные дефисы
-          :gsub('^-', '') -- Убираем дефис в начале
-          :gsub('-$', '') -- Убираем дефис в конце
-          :lower() -- Все в нижний регистр
+        return title
       else
-        -- Если заголовок не задан, генерируем случайный суффикс
         for _ = 1, 4 do
-          suffix = suffix .. string.char(math.random(97, 122)) -- lowercase letters
+          suffix = suffix .. string.char(math.random(97, 122))
         end
       end
       return date_str .. '-' .. suffix
@@ -117,7 +116,41 @@ return {
       ---@field notes_subdir? string
       ---@field note_id_func? (fun(title: string|?, path: obsidian.Path|?): string)
       customizations = {
-        -- TODO: work template -> work directory
+        ['Work Template'] = {
+          notes_subdir = 'work',
+          note_id_func = default_id_func,
+        },
+        ['Ticket Template'] = {
+          notes_subdir = 'work',
+          note_id_func = default_id_func,
+        },
+        ['Ticket Template Defect With Merge'] = {
+          notes_subdir = 'work',
+          note_id_func = default_id_func,
+        },
+        ['Ticket Template With Merge'] = {
+          notes_subdir = 'work',
+          note_id_func = default_id_func,
+        },
+        ['Ticket Template With Refinement'] = {
+          notes_subdir = 'work',
+          note_id_func = default_id_func,
+        },
+        ['Inbox Template'] = {
+          notes_subdir = 'inbox',
+          note_id_func = function(title)
+            local date_str = os.date '%Y%m%d'
+            local suffix = ''
+            if title ~= nil then
+              suffix = title:gsub('%s+', '-'):gsub('[^%w%-]', ''):gsub('-+', '-'):gsub('^-', ''):gsub('-$', ''):lower()
+            else
+              for _ = 1, 4 do
+                suffix = suffix .. string.char(math.random(97, 122))
+              end
+            end
+            return date_str .. '-' .. suffix
+          end,
+        },
       },
     },
 
@@ -273,7 +306,7 @@ return {
       img_name_func = function()
         return string.format('Pasted image %s', os.date '%Y%m%d%H%M%S')
       end,
-      confirm_img_paste = true, -- TODO: move to paste module, paste.confirm
+      confirm_img_paste = true,
     },
 
     ---@class obsidian.config.CallbackConfig
