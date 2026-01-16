@@ -116,7 +116,9 @@ return {
       ---
       ---@field notes_subdir? string
       ---@field note_id_func? (fun(title: string|?, path: obsidian.Path|?): string)
-      customizations = {},
+      customizations = {
+        -- TODO: work template -> work directory
+      },
     },
 
     ---@class obsidian.config.BacklinkOpts
@@ -328,9 +330,9 @@ return {
     ---@field create_new? boolean
     checkbox = {
       enabled = true,
-      -- TODO: check this
-      create_new = true,
-      order = { ' ', '~', '!', '>', 'x' },
+      create_new = false,
+      -- order = { ' ', '~', '!', '>', 'x' },
+      order = { ' ', 'x' },
     },
 
     ---@class obsidian.config.CommentOpts
@@ -354,7 +356,7 @@ return {
     vim.keymap.set('n', '<leader>oq', '<cmd>Obsidian quick_switch<CR>', { desc = 'Quick Switch' })
     vim.keymap.set('n', '<leader>op', '<cmd>Obsidian paste_img<CR>', { desc = 'Paste Image' })
     vim.keymap.set('n', '<leader>od', '<cmd>Obsidian dailies<CR>', { desc = 'Show Obsidian Dailies' })
-    vim.keymap.set('n', '<leader>ot', '<cmd>Obsidian template<CR>', { desc = 'Show Obsidian Dailies' })
+    vim.keymap.set('n', '<leader>ot', '<cmd>Obsidian template<CR>', { desc = 'Insert Obsidian Templates' })
     vim.keymap.set('n', '<leader>om', '<cmd>Obsidian tags<CR>', { desc = 'Obsidian Tags' })
   end,
 }
