@@ -152,6 +152,7 @@ return {
         DiffviewFileHistory = {},
       },
       hooks = {}, -- See |diffview-config-hooks|
+      -- TODO: edit keymaps
       keymaps = {
         disable_defaults = false, -- Disable the default keymaps
         view = {
