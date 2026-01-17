@@ -137,9 +137,13 @@ return {
       function()
         if vim.bo.filetype == 'oil' then
           local dir = require('oil').get_current_dir()
-          return dir and vim.fn.fnamemodify(dir, ':~') or ''
+          if not dir then
+            return ''
+          end
+          return vim.fn.fnamemodify(dir, ':.')
         end
-        return vim.fn.expand '%:p:~'
+
+        return vim.fn.expand '%:t'
       end,
       color = { fg = colors.fg, gui = 'bold' },
     }
