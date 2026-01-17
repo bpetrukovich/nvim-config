@@ -143,7 +143,16 @@ return {
           return vim.fn.fnamemodify(dir, ':.')
         end
 
-        return vim.fn.expand '%:t'
+        local bufname = vim.api.nvim_buf_get_name(0)
+        if bufname == '' then
+          return ''
+        end
+
+        if bufname:match '://' then
+          return bufname
+        end
+
+        return vim.fn.fnamemodify(bufname, ':t')
       end,
       color = { fg = colors.fg, gui = 'bold' },
     }
