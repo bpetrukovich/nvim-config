@@ -37,6 +37,9 @@ vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
+-- Atone lazy loading
+vim.keymap.set('n', '<leader>u', '<cmd>Atone toggle<CR>', { desc = 'Toggle [U]ndotree' })
+
 -- Obsidian lazy loading
 vim.keymap.set('n', '<leader>oo', function()
   require('lazy').load { plugins = { 'obsidian.nvim' } }
