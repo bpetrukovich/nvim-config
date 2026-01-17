@@ -8,7 +8,8 @@
 
 return {
   'mfussenegger/nvim-dap',
-  event = 'VeryLazy',
+  -- event = 'VeryLazy',
+  lazy = true,
   dependencies = {
     -- Creates a beautiful debugger UI
     -- 'rcarriga/nvim-dap-ui',

@@ -45,6 +45,10 @@ vim.keymap.set('n', '<leader>oo', function()
   require('lazy').load { plugins = { 'obsidian.nvim' } }
 end, { desc = 'Load Obsidian' })
 
+vim.keymap.set('n', '<leader>dd', function()
+  require('lazy').load { plugins = { 'nvim-dap' } }
+end, { desc = 'Load Dap' })
+
 vim.keymap.set('n', '<leader>wo', '<cmd>!wsl-open .<CR>', { desc = 'Open cwd in external file explorer' })
 
 -- Delete conflicting keymaps
