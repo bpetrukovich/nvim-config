@@ -390,6 +390,7 @@ return {
   },
   cmd = 'Neogit',
   keys = {
+    -- TODO: think about add <leader>lp to pull, <leader>lP to push etc.
     { '<leader>g', '<cmd>Neogit<cr>', desc = 'Show Neogit UI' },
   },
 
