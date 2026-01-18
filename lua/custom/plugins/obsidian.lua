@@ -37,7 +37,7 @@ return {
     legacy_commands = false,
     -- note_frontmatter_func = require('obsidian.builtin').frontmatter,
 
-    notes_subdir = 'main',
+    notes_subdir = 'raw',
     new_notes_location = 'notes_subdir',
 
     workspaces = {
@@ -116,6 +116,18 @@ return {
       ---@field notes_subdir? string
       ---@field note_id_func? (fun(title: string|?, path: obsidian.Path|?): string)
       customizations = {
+        ['Index Template'] = {
+          notes_subdir = 'main',
+          note_id_func = default_id_func,
+        },
+        ['Evergreen Template'] = {
+          notes_subdir = 'main',
+          note_id_func = default_id_func,
+        },
+        ['Guide Template'] = {
+          notes_subdir = 'guide',
+          note_id_func = default_id_func,
+        },
         ['Work Template'] = {
           notes_subdir = 'work',
           note_id_func = default_id_func,
@@ -136,8 +148,8 @@ return {
           notes_subdir = 'work',
           note_id_func = default_id_func,
         },
-        ['Inbox Template'] = {
-          notes_subdir = 'inbox',
+        ['Raw Template'] = {
+          notes_subdir = 'raw',
           note_id_func = function(title)
             local date_str = os.date '%Y%m%d'
             local suffix = ''
@@ -149,6 +161,21 @@ return {
               end
             end
             return date_str .. '-' .. suffix
+          end,
+        },
+        ['Log Template'] = {
+          notes_subdir = 'log',
+          note_id_func = function(title)
+            local date_str = os.date '%Y-%m-%d %H-%M'
+            local suffix = ''
+            if title ~= nil then
+              suffix = title:gsub('%s+', '-'):gsub('[^%w%-]', ''):gsub('-+', '-'):gsub('^-', ''):gsub('-$', ''):lower()
+            else
+              for _ = 1, 4 do
+                suffix = suffix .. string.char(math.random(97, 122))
+              end
+            end
+            return date_str .. ' ' .. suffix
           end,
         },
       },
