@@ -116,39 +116,39 @@ return {
       ---@field notes_subdir? string
       ---@field note_id_func? (fun(title: string|?, path: obsidian.Path|?): string)
       customizations = {
-        ['Index Template'] = {
+        ['Index'] = {
           notes_subdir = 'main',
           note_id_func = default_id_func,
         },
-        ['Evergreen Template'] = {
+        ['Evergreen'] = {
           notes_subdir = 'main',
           note_id_func = default_id_func,
         },
-        ['Guide Template'] = {
+        ['Guide'] = {
           notes_subdir = 'guide',
           note_id_func = default_id_func,
         },
-        ['Work Template'] = {
+        ['Work'] = {
           notes_subdir = 'work',
           note_id_func = default_id_func,
         },
-        ['Ticket Template'] = {
+        ['Ticket'] = {
           notes_subdir = 'work',
           note_id_func = default_id_func,
         },
-        ['Ticket Template Defect With Merge'] = {
+        ['Ticket Defect With Merge'] = {
           notes_subdir = 'work',
           note_id_func = default_id_func,
         },
-        ['Ticket Template With Merge'] = {
+        ['Ticket With Merge'] = {
           notes_subdir = 'work',
           note_id_func = default_id_func,
         },
-        ['Ticket Template With Refinement'] = {
+        ['Ticket With Refinement'] = {
           notes_subdir = 'work',
           note_id_func = default_id_func,
         },
-        ['Raw Template'] = {
+        ['Raw'] = {
           notes_subdir = 'raw',
           note_id_func = function(title)
             local date_str = os.date '%Y%m%d'
@@ -163,7 +163,7 @@ return {
             return date_str .. '-' .. suffix
           end,
         },
-        ['Log Template'] = {
+        ['Log'] = {
           notes_subdir = 'log',
           note_id_func = function(title)
             local date_str = os.date '%Y-%m-%d %H-%M'
@@ -260,7 +260,7 @@ return {
       alias_format = '%B %-d, %Y',
       default_tags = { 'daily' },
       workdays_only = false,
-      template = 'Daily Template.md',
+      template = 'Daily.md',
     },
 
     ---@class obsidian.config.UICharSpec
