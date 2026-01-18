@@ -10,7 +10,10 @@ return {
       -- there are no required options atm
       vim.keymap.set({ 'n' }, '<leader>sa', function()
         require('grug-far').open { engine = 'astgrep' }
-      end, { desc = 'grug-far: Search' }),
+      end, { desc = 'grug-far: Search astgrep' }),
+      vim.keymap.set({ 'n' }, '<leader>sd', function()
+        require('grug-far').open { engine = 'ripgrep' }
+      end, { desc = 'grug-far: Search ripgrep' }),
     }
   end,
 }
