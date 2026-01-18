@@ -196,11 +196,11 @@ return {
     ---@field match_case? boolean
     ---@field create_new? boolean
     completion = (function()
-      local has_nvim_cmp, _ = pcall(require, 'cmp')
-      local has_blink = pcall(require, 'blink.cmp')
+      -- local has_nvim_cmp, _ = pcall(require, 'cmp')
+      -- local has_blink = pcall(require, 'blink.cmp')
       return {
-        nvim_cmp = has_nvim_cmp and not has_blink,
-        blink = has_blink,
+        nvim_cmp = false,
+        blink = true,
         min_chars = 2,
         match_case = true,
         create_new = true,
