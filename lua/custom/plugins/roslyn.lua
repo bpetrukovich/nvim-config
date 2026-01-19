@@ -60,7 +60,6 @@ return {
       '--stdio',
       '--logLevel=Information',
       '--extensionLogDirectory=' .. vim.fs.dirname(vim.lsp.get_log_path()),
-      '--extension',
     }
 
     vim.lsp.config('roslyn', {
