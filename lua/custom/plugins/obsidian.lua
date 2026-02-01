@@ -8,7 +8,7 @@ local default_id_func = function(title)
       suffix = suffix .. string.char(math.random(97, 122))
     end
   end
-  return date_str .. '-' .. suffix
+  return date_str .. ' ' .. suffix
 end
 
 return {
@@ -37,7 +37,7 @@ return {
     legacy_commands = false,
     -- note_frontmatter_func = require('obsidian.builtin').frontmatter,
 
-    notes_subdir = 'raw',
+    notes_subdir = 'personal/raw',
     new_notes_location = 'notes_subdir',
 
     workspaces = {
@@ -51,7 +51,7 @@ return {
     ---@param title string|?
     ---@return string
     note_id_func = function(title)
-      local date_str = os.date '%Y%m%d'
+      local date_str = os.date '%Y-%m-%d'
       local suffix = ''
       if title ~= nil then
         return title
@@ -117,41 +117,45 @@ return {
       ---@field note_id_func? (fun(title: string|?, path: obsidian.Path|?): string)
       customizations = {
         ['Index'] = {
-          notes_subdir = 'main',
+          notes_subdir = 'personal/main',
           note_id_func = default_id_func,
         },
         ['Evergreen'] = {
-          notes_subdir = 'main',
+          notes_subdir = 'personal/main',
+          note_id_func = default_id_func,
+        },
+        ['Learning'] = {
+          notes_subdir = 'personal/learning',
           note_id_func = default_id_func,
         },
         ['Guide'] = {
-          notes_subdir = 'guide',
+          notes_subdir = 'personal/guide',
           note_id_func = default_id_func,
         },
         ['Work'] = {
-          notes_subdir = 'work',
+          notes_subdir = 'work/work',
           note_id_func = default_id_func,
         },
         ['Ticket'] = {
-          notes_subdir = 'work',
+          notes_subdir = 'work/ticket',
           note_id_func = default_id_func,
         },
         ['Ticket Defect With Merge'] = {
-          notes_subdir = 'work',
+          notes_subdir = 'work/ticket',
           note_id_func = default_id_func,
         },
         ['Ticket With Merge'] = {
-          notes_subdir = 'work',
+          notes_subdir = 'work/ticket',
           note_id_func = default_id_func,
         },
         ['Ticket With Refinement'] = {
-          notes_subdir = 'work',
+          notes_subdir = 'work/ticket',
           note_id_func = default_id_func,
         },
         ['Raw'] = {
-          notes_subdir = 'raw',
+          notes_subdir = 'personal/raw',
           note_id_func = function(title)
-            local date_str = os.date '%Y%m%d'
+            local date_str = os.date '%Y-%m-%d'
             local suffix = ''
             if title ~= nil then
               suffix = title:gsub('%s+', '-'):gsub('[^%w%-]', ''):gsub('-+', '-'):gsub('^-', ''):gsub('-$', ''):lower()
@@ -164,7 +168,7 @@ return {
           end,
         },
         ['Log'] = {
-          notes_subdir = 'log',
+          notes_subdir = 'personal/log',
           note_id_func = function(title)
             local date_str = os.date '%Y-%m-%d %H-%M'
             local suffix = ''

@@ -100,6 +100,32 @@ return {
       dapui.show_view 'breakpoints'
     end, { desc = 'Debug: Show breakpoints' })
 
+    vim.keymap.set('n', '<Leader>dc', function()
+      vim.ui.input({ prompt = 'Condition (exp): ' }, function(cond)
+        if not cond then
+          return
+        end
+
+        vim.ui.input({ prompt = 'Hit condition (num): ' }, function(hit)
+          if not hit then
+            return
+          end
+
+          vim.ui.input({ prompt = 'Log message: ' }, function(log)
+            if not log then
+              return
+            end
+
+            local c = cond ~= '' and cond or nil
+            local h = hit ~= '' and hit or nil
+            local l = log ~= '' and log or nil
+
+            dap.set_breakpoint(c, h, l)
+          end)
+        end)
+      end)
+    end, { desc = 'Dap: Smart Breakpoint' })
+
     -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
     -- vim.keymap.set('n', '<F7>', dapui.toggle, { desc = 'Debug: See last session result.' })
 
