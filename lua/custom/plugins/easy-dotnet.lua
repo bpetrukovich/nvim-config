@@ -9,7 +9,7 @@ return {
     -- Options are not required
     dotnet.setup {
       lsp = {
-        enabled = false, -- Enable builtin roslyn lsp
+        enabled = true, -- Enable builtin roslyn lsp
         roslynator_enabled = true, -- Automatically enable roslynator analyzer
         analyzer_assemblies = {}, -- Any additional roslyn analyzers you might use like SonarAnalyzer.CSharp
         config = {},

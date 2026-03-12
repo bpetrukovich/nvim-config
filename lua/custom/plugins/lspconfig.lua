@@ -132,6 +132,8 @@ return { -- LSP Configuration & Plugins
           },
         },
       },
+
+      ts_ls = {},
     }
 
     require('mason').setup {

@@ -18,20 +18,22 @@ return { -- Autoformat
       -- Disable "format_on_save lsp_fallback" for languages that don't
       -- have a well standardized coding style. You can add additional
       -- languages here or re-enable it for the disabled ones.
-      local disable_filetypes = { cs = true, c = true, cpp = true, ts = true, js = true, htmlangular = true }
-      if disable_filetypes[vim.bo[bufnr].filetype] then
-        return nil
-      else
-        return {
-          timeout_ms = 1500,
-          lsp_format = 'fallback',
-        }
-      end
+      -- local disable_filetypes = { cs = true, c = true, cpp = true, ts = true, js = true, htmlangular = true }
+      -- if disable_filetypes[vim.bo[bufnr].filetype] then
+      --   return nil
+      -- else
+      --   return {
+      --     timeout_ms = 1500,
+      --     lsp_format = 'fallback',
+      --   }
+      -- end
+      return nil
     end,
     formatters_by_ft = {
       lua = { 'stylua' },
       javascript = { 'prettierd', 'prettier' },
-      htmlangular = { 'prettierd', 'prettier' },
+      -- htmlangular = { 'prettierd', 'prettier' },
+      -- htmlangular = { 'htmlhint' },
       typescript = { 'prettierd', 'prettier' },
       ejs = { 'prettierd', 'prettier' },
       css = { 'stylelint' },

@@ -10,5 +10,12 @@
       "Console.WriteLine(sw.ElapsedMilliseconds);"
     ],
     "description": "Stopwatch timer for performance measurement"
+  },
+  "logobject": {
+    "prefix": "logobject",
+    "body": [
+      "Console.WriteLine(JsonSerializer.Serialize(${1:obj}, new JsonSerializerOptions { WriteIndented = true }));"
+    ],
+    "description": "Log object to console"
   }
 }
