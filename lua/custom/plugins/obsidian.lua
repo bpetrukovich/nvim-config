@@ -141,15 +141,15 @@ return {
           note_id_func = default_id_func,
         },
         ['Ticket Defect With Merge'] = {
-          notes_subdir = 'work/ticket',
+          notes_subdir = 'work/tickets',
           note_id_func = default_id_func,
         },
         ['Ticket With Merge'] = {
-          notes_subdir = 'work/ticket',
+          notes_subdir = 'work/tickets',
           note_id_func = default_id_func,
         },
         ['Ticket With Refinement'] = {
-          notes_subdir = 'work/ticket',
+          notes_subdir = 'work/tickets',
           note_id_func = default_id_func,
         },
         ['Raw'] = {
