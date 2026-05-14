@@ -55,11 +55,38 @@ return {
       end)
     end
 
+    local diffview_pr_free = function()
+      local lines = vim.fn.systemlist 'git branch -r --format="%(refname:short)"'
+
+      local branches = {}
+      for _, branch in ipairs(lines) do
+        if branch then
+          table.insert(branches, branch)
+        end
+      end
+
+      if #branches == 0 then
+        vim.notify('No branches found', vim.log.levels.WARN)
+        return
+      end
+
+      vim.ui.select(branches, {
+        prompt = 'Base branch:',
+      }, function(base)
+        if not base then
+          return
+        end
+
+        vim.cmd('DiffviewOpen ' .. base .. '...HEAD --imply-local')
+      end)
+    end
+
     vim.keymap.set('n', '<leader>cv', '<cmd>DiffviewOpen<CR>', { desc = 'View Diff' })
     vim.keymap.set('n', '<leader>cc', '<cmd>DiffviewFileHistory<CR>', { desc = 'Commit History' })
     vim.keymap.set('n', '<leader>cb', '<cmd>DiffviewFileHistory %<CR>', { desc = 'File History' })
     vim.keymap.set('n', '<leader>cd', '<cmd>DiffviewClose<CR>', { desc = 'Close' })
     vim.keymap.set('n', '<leader>pr', diffview_pr, { desc = 'Pull Request review' })
+    vim.keymap.set('n', '<leader>pR', diffview_pr_free, { desc = 'Pull Request review' })
     vim.keymap.set('n', '<leader>pc', diffview_commit, { desc = 'Commit diff review' })
     -- Lua
     local actions = require 'diffview.actions'

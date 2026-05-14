@@ -8,7 +8,7 @@ local default_id_func = function(title)
       suffix = suffix .. string.char(math.random(97, 122))
     end
   end
-  return date_str .. ' ' .. suffix
+  return date_str .. '_' .. suffix
 end
 
 return {
@@ -60,7 +60,7 @@ return {
           suffix = suffix .. string.char(math.random(97, 122))
         end
       end
-      return date_str .. ' ' .. suffix
+      return date_str .. '_' .. suffix
     end,
     note_path_func = function(spec)
       local path = spec.dir / tostring(spec.id)
@@ -164,7 +164,7 @@ return {
                 suffix = suffix .. string.char(math.random(97, 122))
               end
             end
-            return date_str .. ' ' .. suffix
+            return date_str .. '_' .. suffix
           end,
         },
         ['Log'] = {
@@ -179,7 +179,7 @@ return {
                 suffix = suffix .. string.char(math.random(97, 122))
               end
             end
-            return date_str .. ' ' .. suffix
+            return date_str .. '_' .. suffix
           end,
         },
       },
