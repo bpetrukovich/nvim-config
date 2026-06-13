@@ -10,7 +10,6 @@ return {
           return
         end
 
-        -- commit...HEAD — стандартный git diff range
         vim.cmd('DiffviewOpen ' .. commit .. '...HEAD --imply-local')
       end)
     end
@@ -25,6 +24,7 @@ return {
         main = true,
         KPI = true,
         CORE = true,
+        staging = true,
       }
 
       local branches = {}

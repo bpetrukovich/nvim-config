@@ -2,7 +2,7 @@ return {
   'kevinhwang91/nvim-ufo',
   dependencies = 'kevinhwang91/promise-async',
   opts = {
-    filetype_exclude = { 'help', 'alpha', 'dashboard', 'neo-tree', 'Trouble', 'lazy', 'mason' },
+    filetype_exclude = { 'help', 'alpha', 'dashboard', 'neo-tree', 'Trouble', 'lazy', 'mason', 'oil' },
   },
   config = function(_, opts)
     vim.opt.foldcolumn = '0'
