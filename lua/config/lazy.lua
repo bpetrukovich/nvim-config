@@ -16,7 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 
 local plugins = {}
 
-table.insert(plugins, { import = 'custom.plugins' })
+table.insert(plugins, { import = 'plugins' })
 
 require('lazy').setup(plugins, {
   ui = {
