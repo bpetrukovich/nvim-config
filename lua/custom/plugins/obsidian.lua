@@ -13,37 +13,34 @@ end
 
 return {
   'obsidian-nvim/obsidian.nvim',
-  version = '*', -- recommended, use latest release instead of latest commit
+  version = '*',
   lazy = true,
-  ft = 'markdown',
-  -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
-  -- event = {
-  --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
-  --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
-  --   -- refer to `:h file-pattern` for more examples
-  --   "BufReadPre path/to/my-vault/*.md",
-  --   "BufNewFile path/to/my-vault/*.md",
-  -- },
+  event = {
+    'BufReadPre ' .. vim.fn.expand '~' .. '/obsidian-vault/*.md',
+    'BufNewFile ' .. vim.fn.expand '~' .. '/obsidian-vault/*.md',
+    'BufReadPre oil://' .. vim.fn.expand '~' .. '/obsidian-vault/',
+  },
   dependencies = {
-    -- Required.
     'nvim-lua/plenary.nvim',
-
-    -- see above for full list of optional dependencies ☝️
   },
 
   ---@module 'obsidian'
   ---@type obsidian.config
   opts = {
     legacy_commands = false,
-    -- note_frontmatter_func = require('obsidian.builtin').frontmatter,
 
     notes_subdir = 'personal/raw',
     new_notes_location = 'notes_subdir',
 
+    link = {
+      style = 'wiki',
+      format = 'shortest',
+      auto_update = false,
+    },
+
     workspaces = {
       {
         name = 'personal',
-        -- path = '/mnt/c/Users/b.petrukovich/Documents/obsidian-vault',
         path = '~/obsidian-vault/',
       },
     },
@@ -66,55 +63,26 @@ return {
       local path = spec.dir / tostring(spec.id)
       return path
     end,
-    -- wiki_link_func = require('obsidian.builtin').wiki_link_id_prefix,
-    -- markdown_link_func = require('obsidian.builtin').markdown_link,
-    preferred_link_style = 'wiki',
     open_notes_in = 'current',
 
-    ---@class obsidian.config.FrontmatterOpts
-    ---
-    --- Whether to enable frontmatter, boolean for global on/off, or a function that takes filename and returns boolean.
-    ---@field enabled? (fun(fname: string?): boolean)|boolean
-    ---
-    --- Function to turn Note attributes into frontmatter.
-    ---@field func? fun(note: obsidian.Note): table<string, any>
-    --- Function that is passed to table.sort to sort the properties, or a fixed order of properties.
-    ---
-    --- List of string that sorts frontmatter properties, or a function that compares two values, set to vim.NIL/false to do no sorting
-    ---@field sort? string[] | (fun(a: any, b: any): boolean) | vim.NIL | boolean
     frontmatter = {
       enabled = true,
-      -- func = require('obsidian.builtin').frontmatter,
       sort = { 'id', 'aliases', 'tags' },
     },
 
-    ---@class obsidian.config.TemplateOpts
-    ---
-    ---@field folder string|obsidian.Path|?
-    ---@field date_format string|?
-    ---@field time_format string|?
-    --- A map for custom variables, the key should be the variable and the value a function.
-    --- Functions are called with obsidian.TemplateContext objects as their sole parameter.
-    --- See: https://github.com/obsidian-nvim/obsidian.nvim/wiki/Template#substitutions
-    ---@field substitutions table<string, (fun(ctx: obsidian.TemplateContext):string)|(fun(): string)|string>|?
-    ---@field customizations table<string, obsidian.config.CustomTemplateOpts>|?
     templates = {
       folder = 'templates/',
       date_format = '%Y-%m-%d',
       time_format = '%H:%M',
       substitutions = {
         yesterday = function()
-          return os.date('%Y-%m-%d', os.time() - 86400)
+          return string(os.date('%Y-%m-%d', os.time() - 86400))
         end,
         tomorrow = function()
-          return os.date('%Y-%m-%d', os.time() + 86400)
+          return string(os.date('%Y-%m-%d', os.time() + 86400))
         end,
       },
 
-      ---@class obsidian.config.CustomTemplateOpts
-      ---
-      ---@field notes_subdir? string
-      ---@field note_id_func? (fun(title: string|?, path: obsidian.Path|?): string)
       customizations = {
         ['Index'] = {
           notes_subdir = 'personal/main',
@@ -185,47 +153,18 @@ return {
       },
     },
 
-    ---@class obsidian.config.BacklinkOpts
-    ---
-    ---@field parse_headers boolean
     backlinks = {
       parse_headers = true,
     },
 
-    ---@class obsidian.config.CompletionOpts
-    ---
-    ---@field nvim_cmp? boolean
-    ---@field blink? boolean
-    ---@field min_chars? integer
-    ---@field match_case? boolean
-    ---@field create_new? boolean
     completion = (function()
-      -- local has_nvim_cmp, _ = pcall(require, 'cmp')
-      -- local has_blink = pcall(require, 'blink.cmp')
       return {
-        nvim_cmp = false,
-        blink = true,
         min_chars = 2,
         match_case = true,
         create_new = true,
       }
     end)(),
 
-    ---@class obsidian.config.PickerNoteMappingOpts
-    ---
-    ---@field new? string
-    ---@field insert_link? string
-
-    ---@class obsidian.config.PickerTagMappingOpts
-    ---
-    ---@field tag_note? string
-    ---@field insert_tag? string
-
-    ---@class obsidian.config.PickerOpts
-    ---
-    ---@field name obsidian.config.Picker|?
-    ---@field note_mappings? obsidian.config.PickerNoteMappingOpts
-    ---@field tag_mappings? obsidian.config.PickerTagMappingOpts
     picker = {
       -- TODO: one day change to 'snacks.pick'
       name = 'telescope.nvim',
@@ -239,25 +178,12 @@ return {
       },
     },
 
-    ---@class obsidian.config.SearchOpts
-    ---
-    ---@field sort_by string
-    ---@field sort_reversed boolean
-    ---@field max_lines integer
     search = {
       sort_by = 'modified',
       sort_reversed = true,
       max_lines = 1000,
     },
 
-    ---@class obsidian.config.DailyNotesOpts
-    ---
-    ---@field folder? string
-    ---@field date_format? string
-    ---@field alias_format? string
-    ---@field template? string
-    ---@field default_tags? string[]
-    ---@field workdays_only? boolean
     daily_notes = {
       folder = 'daily/',
       date_format = '%Y-%m-%d',
@@ -267,32 +193,8 @@ return {
       template = 'Daily.md',
     },
 
-    ---@class obsidian.config.UICharSpec
-    ---@field char string
-    ---@field hl_group string
-
-    ---@class obsidian.config.CheckboxSpec : obsidian.config.UICharSpec
-    ---@field char string
-    ---@field hl_group string
-
-    ---@class obsidian.config.UIStyleSpec
-    ---@field hl_group string
-
-    ---@class obsidian.config.UIOpts
-    ---
-    ---@field enable boolean
-    ---@field ignore_conceal_warn boolean
-    ---@field update_debounce integer
-    ---@field max_file_length integer|?
-    ---@field checkboxes table<string, obsidian.config.CheckboxSpec>
-    ---@field bullets obsidian.config.UICharSpec|?
-    ---@field external_link_icon obsidian.config.UICharSpec
-    ---@field reference_text obsidian.config.UIStyleSpec
-    ---@field highlight_text obsidian.config.UIStyleSpec
-    ---@field tags obsidian.config.UIStyleSpec
-    ---@field block_ids obsidian.config.UIStyleSpec
-    ---@field hl_groups table<string, table>
     ui = {
+      enabled = true,
       enable = true,
       ignore_conceal_warn = false,
       update_debounce = 200,
@@ -318,19 +220,6 @@ return {
       },
     },
 
-    ---@class obsidian.config.AttachmentsOpts
-    ---
-    ---Default folder to save images to, relative to the vault root (/) or current dir (.), see https://github.com/obsidian-nvim/obsidian.nvim/wiki/Images#change-image-save-location
-    ---@field folder? string
-    ---
-    ---Default name for pasted images
-    ---@field img_name_func? fun(): string
-    ---
-    ---Default text to insert for pasted images
-    ---@field img_text_func? fun(path: obsidian.Path): string
-    ---
-    ---Whether to confirm the paste or not. Defaults to true.
-    ---@field confirm_img_paste? boolean
     attachments = {
       folder = 'files',
       -- img_text_func = require('obsidian.builtin').img_text_func,
@@ -340,30 +229,8 @@ return {
       confirm_img_paste = true,
     },
 
-    ---@class obsidian.config.CallbackConfig
-    ---
-    ---Runs right after setup
-    ---@field post_setup? fun()
-    ---
-    ---Runs when entering a note buffer.
-    ---@field enter_note? fun(note: obsidian.Note)
-    ---
-    ---Runs when leaving a note buffer.
-    ---@field leave_note? fun(note: obsidian.Note)
-    ---
-    ---Runs right before writing a note buffer.
-    ---@field pre_write_note? fun(note: obsidian.Note)
-    ---
-    ---Runs anytime the workspace is set/changed.
-    ---@field post_set_workspace? fun(workspace: obsidian.Workspace)
     callbacks = {},
 
-    ---@class obsidian.config.FooterOpts
-    ---
-    ---@field enabled? boolean
-    ---@field format? string
-    ---@field hl_group? string
-    ---@field separator? string|false Set false to disable separator; set an empty string to insert a blank line separator.
     footer = {
       enabled = true,
       format = '{{backlinks}} backlinks  {{properties}} properties  {{words}} words  {{chars}} chars',
@@ -371,36 +238,17 @@ return {
       separator = string.rep('-', 80),
     },
 
-    ---@class obsidian.config.OpenOpts
-    ---
-    ---Opens the file with current line number
-    ---@field use_advanced_uri? boolean
-    ---
-    ---Function to do the opening, default to vim.ui.open
-    ---@field func? fun(uri: string)
     open = {
       use_advanced_uri = false,
       func = vim.ui.open,
     },
 
-    ---@class obsidian.config.CheckboxOpts
-    ---
-    ---@field enabled? boolean
-    ---
-    ---Order of checkbox state chars, e.g. { " ", "x" }
-    ---@field order? string[]
-    ---
-    ---Whether to create new checkbox on paragraphs
-    ---@field create_new? boolean
     checkbox = {
       enabled = true,
       create_new = false,
-      -- order = { ' ', '~', '!', '>', 'x' },
       order = { ' ', 'x' },
     },
 
-    ---@class obsidian.config.CommentOpts
-    ---@field enabled boolean
     comment = {
       enabled = false,
     },
