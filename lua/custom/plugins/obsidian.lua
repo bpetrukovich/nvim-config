@@ -193,6 +193,7 @@ return {
       template = 'Daily.md',
     },
 
+    ---@diagnostic disable-next-line: missing-fields
     ui = {
       enabled = true,
       enable = true,
