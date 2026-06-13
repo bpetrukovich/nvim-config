@@ -25,8 +25,6 @@ return {
       },
       opts = {},
     },
-    -- 'Kaiser-Yang/blink-cmp-avante',
-    -- 'Exafunction/windsurf.nvim',
     'folke/lazydev.nvim',
   },
   --- @module 'blink.cmp'
@@ -45,22 +43,9 @@ return {
     },
 
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer', 'easy-dotnet', 'lazydev' }, -- 'avante', 'codeium'
+      default = { 'lsp', 'path', 'snippets', 'buffer', 'easy-dotnet', 'lazydev' },
       providers = {
         lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
-        -- codeium = {
-        --   name = 'Codeium',
-        --   module = 'codeium.blink',
-        --   async = true,
-        --   enabled = function()
-        --     return vim.bo.filetype ~= 'oil'
-        --   end,
-        -- },
-        -- avante = {
-        --   module = 'blink-cmp-avante',
-        --   name = 'Avante',
-        --   opts = {},
-        -- },
         ['easy-dotnet'] = {
           name = 'easy-dotnet',
           enabled = true,
