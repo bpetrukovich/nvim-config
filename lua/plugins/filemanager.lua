@@ -214,7 +214,7 @@ return {
         border = nil,
       },
 
-      vim.keymap.set('n', '<leader>pv', '<CMD>Oil<CR>', { desc = 'Open parent directory' }),
+      vim.keymap.set('n', '<leader>pv', '<CMD>Oil<CR>', { desc = 'Open project view' }),
     }
   end,
 }

@@ -86,8 +86,8 @@ return {
     vim.keymap.set('n', '<leader>cb', '<cmd>DiffviewFileHistory %<CR>', { desc = 'File History' })
     vim.keymap.set('n', '<leader>cd', '<cmd>DiffviewClose<CR>', { desc = 'Close' })
     vim.keymap.set('n', '<leader>pr', diffview_pr, { desc = 'Pull Request review' })
-    vim.keymap.set('n', '<leader>pR', diffview_pr_free, { desc = 'Pull Request review' })
-    vim.keymap.set('n', '<leader>pc', diffview_commit, { desc = 'Commit diff review' })
+    vim.keymap.set('n', '<leader>pR', diffview_pr_free, { desc = 'Pull Request review (all branches)' })
+    vim.keymap.set('n', '<leader>pc', diffview_commit, { desc = 'Commit..HEAD diff review' })
     -- Lua
     local actions = require 'diffview.actions'
 

@@ -58,11 +58,6 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 -- Atone lazy loading
 vim.keymap.set('n', '<leader>u', '<cmd>Atone toggle<CR>', { desc = 'Toggle [U]ndotree' })
 
--- Obsidian lazy loading
-vim.keymap.set('n', '<leader>oo', function()
-  require('lazy').load { plugins = { 'obsidian.nvim' } }
-end, { desc = 'Load Obsidian' })
-
 vim.keymap.set('n', '<leader>dd', function()
   require('lazy').load { plugins = { 'nvim-dap' } }
 end, { desc = 'Load Dap' })

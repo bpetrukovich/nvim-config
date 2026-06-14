@@ -80,7 +80,7 @@ return {
     vim.keymap.set('n', '<leader>dl', function()
       require('dap').list_breakpoints()
       vim.cmd 'copen'
-    end, { desc = 'List Breakpoints (Quickfix)' })
+    end, { desc = 'Debug: List Breakpoints' })
     vim.keymap.set('n', '<leader>ds', function()
       dapui.show_view 'scopes'
     end, { desc = 'Debug: Show Scopes' })
@@ -124,7 +124,7 @@ return {
           end)
         end)
       end)
-    end, { desc = 'Dap: Smart Breakpoint' })
+    end, { desc = 'Debug: Smart Breakpoint' })
 
     -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
     -- vim.keymap.set('n', '<F7>', dapui.toggle, { desc = 'Debug: See last session result.' })
