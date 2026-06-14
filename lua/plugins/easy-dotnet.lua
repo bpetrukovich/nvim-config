@@ -3,7 +3,7 @@ return {
   -- 'nvim-telescope/telescope.nvim' or 'ibhagwan/fzf-lua' or 'folke/snacks.nvim'
   -- are highly recommended for a better experience
   ft = { 'cs', 'razor' },
-  dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim' },
+  dependencies = { 'nvim-lua/plenary.nvim', 'folke/snacks.nvim' },
   config = function()
     local dotnet = require 'easy-dotnet'
     -- Options are not required

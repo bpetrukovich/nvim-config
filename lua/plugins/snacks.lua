@@ -407,8 +407,6 @@ return {
       mode = { 'n', 't' },
     },
 
-    -- ============ PICKER KEYMAPS (matching your Telescope setup) ============
-
     -- Search files
     {
       '<leader>sf',

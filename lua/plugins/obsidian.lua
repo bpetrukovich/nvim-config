@@ -166,8 +166,7 @@ return {
     end)(),
 
     picker = {
-      -- TODO: one day change to 'snacks.pick'
-      name = 'telescope.nvim',
+      name = 'snacks.picker',
       note_mappings = {
         new = '<C-x>',
         insert_link = '<C-l>',
@@ -267,7 +266,6 @@ return {
     vim.keymap.set('n', '<leader>on', '<cmd>Obsidian new_from_template<CR>', { desc = 'Create New Note' })
     vim.keymap.set('n', '<leader>os', '<cmd>Obsidian search<CR>', { desc = 'Search Obsidian' })
     vim.keymap.set('n', '<leader>oq', '<cmd>Obsidian quick_switch<CR>', { desc = 'Quick Switch' })
-    vim.keymap.set('n', '<leader>op', '<cmd>Obsidian paste_img<CR>', { desc = 'Paste Image' })
     vim.keymap.set('n', '<leader>od', '<cmd>Obsidian dailies<CR>', { desc = 'Show Obsidian Dailies' })
     vim.keymap.set('n', '<leader>ot', '<cmd>Obsidian template<CR>', { desc = 'Insert Obsidian Templates' })
     vim.keymap.set('n', '<leader>om', '<cmd>Obsidian tags<CR>', { desc = 'Obsidian Tags' })

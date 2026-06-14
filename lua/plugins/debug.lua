@@ -27,7 +27,6 @@ return {
     -- 'microsoft/vscode-js-debug',
     'mxsdev/nvim-dap-vscode-js',
     'theHamsta/nvim-dap-virtual-text',
-    'nvim-telescope/telescope-dap.nvim',
     'Weissle/persistent-breakpoints.nvim',
   },
   config = function()
@@ -44,7 +43,6 @@ return {
       },
     }
 
-    require('telescope').load_extension 'dap'
     require('nvim-dap-virtual-text').setup {}
     require('mason-nvim-dap').setup {
       -- Makes a best effort to setup the various debuggers with
@@ -79,8 +77,10 @@ return {
     vim.keymap.set('n', '<leader>dT', '<cmd>DapTerminate<CR>', { desc = 'Debug: Terminate' })
     vim.keymap.set('n', '<leader>do', dap.toggle_breakpoint, { desc = 'Debug: Toggle Breakpoint' })
     vim.keymap.set('n', '<F4>', '<cmd>PBToggleBreakpoint<CR>', { desc = 'Debug: Toggle Persistent Breakpoint' })
-    vim.keymap.set('n', '<leader>dl', '<cmd>Telescope dap list_breakpoints<CR>', { desc = 'Debug: List Breakpoints' })
-    vim.keymap.set('n', '<leader>df', '<cmd>Telescope dap frames<CR>', { desc = 'Debug: Show Stack' })
+    vim.keymap.set('n', '<leader>dl', function()
+      require('dap').list_breakpoints()
+      vim.cmd 'copen'
+    end, { desc = 'List Breakpoints (Quickfix)' })
     vim.keymap.set('n', '<leader>ds', function()
       dapui.show_view 'scopes'
     end, { desc = 'Debug: Show Scopes' })
