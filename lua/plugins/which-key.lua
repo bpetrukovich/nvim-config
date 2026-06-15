@@ -18,7 +18,6 @@ return { -- Useful plugin to show you pending keybinds.
       { '<leader>g', desc = '[G]it' },
       { '<leader>m', desc = '[M]arkdown' },
       { '<leader>p', desc = '[P]roject' },
-      { '<leader>x', desc = 'Trouble' },
     }
   end,
 }

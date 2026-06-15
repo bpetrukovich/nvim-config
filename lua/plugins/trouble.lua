@@ -182,18 +182,18 @@ return {
     end,
   },
   keys = {
-    -- {
-    --   '<leader>Q',
-    --   '<cmd>Trouble diagnostics toggle<cr>',
-    --   desc = 'Diagnostics (Trouble)',
-    -- },
+    {
+      '<leader>Q',
+      '<cmd>Trouble diagnostics toggle<cr>',
+      desc = 'Diagnostics (Trouble)',
+    },
     {
       '<leader>q',
       '<cmd>Trouble diagnostics toggle filter.buf=0 groups=false<cr>',
       desc = 'Buffer Diagnostics (Trouble)',
     },
     {
-      '<leader>bs',
+      '<leader>bS',
       '<cmd>Trouble symbols toggle focus=false<cr>',
       desc = 'Symbols (Trouble)',
     },
@@ -201,16 +201,6 @@ return {
       'gr',
       '<cmd>Trouble lsp_references toggle focus=true groups=false --[[ win.position=right win.size=50 ]]<cr>',
       desc = 'LSP references (Trouble)',
-    },
-    {
-      '<leader>xl',
-      '<cmd>Trouble loclist toggle<cr>',
-      desc = 'Location List (Trouble)',
-    },
-    {
-      '<leader>xq',
-      '<cmd>Trouble qflist toggle<cr>',
-      desc = 'Quickfix List (Trouble)',
     },
     {
       '<leader>tt',

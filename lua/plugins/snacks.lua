@@ -352,18 +352,9 @@ return {
     scroll = { enabled = false },
     scratch = { enabled = false },
     profiler = { enabled = false },
-    lazygit = { enabled = true },
+    lazygit = { enabled = false },
   },
   keys = {
-    -- Zen mode
-    {
-      '<leader>z',
-      function()
-        Snacks.zen()
-      end,
-      desc = 'Toggle Zen Mode',
-    },
-
     -- Notifications
     {
       '<leader>nh',
@@ -527,16 +518,9 @@ return {
       desc = 'Command History',
     },
     {
-      '<leader>l',
-      function()
-        Snacks.lazygit()
-      end,
-      desc = 'Lazygit',
-    },
-    {
       '<leader>bb',
       function()
-        Snacks.picker.buffers({layout = "sidebar"})
+        Snacks.picker.buffers { layout = 'sidebar' }
       end,
       desc = 'Find [B]uffers',
     },
