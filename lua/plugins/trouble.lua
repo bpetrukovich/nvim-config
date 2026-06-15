@@ -105,57 +105,6 @@ local defaults = {
       desc = 'Toggle Severity Filter',
     },
   },
-  ---@type table<string, trouble.Mode>
-  modes = {
-    -- sources define their own modes, which you can use directly,
-    -- or override like in the example below
-    -- lsp_references = {
-    --   -- some modes are configurable, see the source code for more details
-    --   params = {
-    --     include_declaration = true,
-    --   },
-    -- },
-    -- The LSP base mode for:
-    -- * lsp_definitions, lsp_references, lsp_implementations
-    -- * lsp_type_definitions, lsp_declarations, lsp_command
-    -- lsp_base = {
-    --   params = {
-    --     -- don't include the current location in the results
-    --     include_current = false,
-    --   },
-    -- },
-    -- more advanced example that extends the lsp_document_symbols
-    -- symbols = {
-    --   desc = 'document symbols',
-    --   mode = 'lsp_document_symbols',
-    --   focus = false,
-    --   win = { position = 'right' },
-    --   filter = {
-    --     -- remove Package since luals uses it for control flow structures
-    --     ['not'] = { ft = 'lua', kind = 'Package' },
-    --     any = {
-    --       -- all symbol kinds for help / markdown files
-    --       ft = { 'help', 'markdown' },
-    --       -- default set of symbol kinds
-    --       kind = {
-    --         'Class',
-    --         'Constructor',
-    --         'Enum',
-    --         'Field',
-    --         'Function',
-    --         'Interface',
-    --         'Method',
-    --         'Module',
-    --         'Namespace',
-    --         'Package',
-    --         'Property',
-    --         'Struct',
-    --         'Trait',
-    --       },
-    --     },
-    --   },
-    -- },
-  },
 }
 return {
   'folke/trouble.nvim',
