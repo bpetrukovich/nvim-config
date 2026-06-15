@@ -453,13 +453,6 @@ return {
       end,
       desc = '[/] Search in current buffer',
     },
-    -- {
-    --   '<leader>s/',
-    --   function()
-    --     Snacks.picker.grep_buffers()
-    --   end,
-    --   desc = '[S]earch [/] in Open Files',
-    -- },
 
     -- Grep with test exclusions/inclusions
     {
@@ -539,6 +532,13 @@ return {
         Snacks.lazygit()
       end,
       desc = 'Lazygit',
+    },
+    {
+      '<leader>bb',
+      function()
+        Snacks.picker.buffers({layout = "sidebar"})
+      end,
+      desc = 'Find [B]uffers',
     },
   },
 }
