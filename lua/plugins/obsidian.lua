@@ -66,7 +66,7 @@ return {
     open_notes_in = 'current',
 
     frontmatter = {
-      enabled = true,
+      enabled = false,
       sort = { 'id', 'aliases', 'tags' },
     },
 
@@ -84,72 +84,52 @@ return {
       },
 
       customizations = {
-        ['Index'] = {
-          notes_subdir = 'personal/main',
+        ['Inbox'] = {
+          notes_subdir = 'main',
           note_id_func = default_id_func,
         },
-        ['Evergreen'] = {
-          notes_subdir = 'personal/main',
-          note_id_func = default_id_func,
-        },
-        ['Learning'] = {
-          notes_subdir = 'personal/learning',
-          note_id_func = default_id_func,
-        },
-        ['Guide'] = {
-          notes_subdir = 'personal/guide',
+        ['Stable'] = {
+          notes_subdir = 'main',
           note_id_func = default_id_func,
         },
         ['Work'] = {
-          notes_subdir = 'work/work',
+          notes_subdir = 'work/kpi',
           note_id_func = default_id_func,
         },
         ['Ticket'] = {
           notes_subdir = 'work/tickets',
           note_id_func = default_id_func,
         },
-        ['Ticket Defect With Merge'] = {
-          notes_subdir = 'work/tickets',
-          note_id_func = default_id_func,
-        },
-        ['Ticket With Merge'] = {
-          notes_subdir = 'work/tickets',
-          note_id_func = default_id_func,
-        },
-        ['Ticket With Refinement'] = {
-          notes_subdir = 'work/tickets',
-          note_id_func = default_id_func,
-        },
-        ['Raw'] = {
-          notes_subdir = 'personal/raw',
-          note_id_func = function(title)
-            local date_str = os.date '%Y-%m-%d'
-            local suffix = ''
-            if title ~= nil then
-              suffix = title:gsub('%s+', '-'):gsub('[^%w%-]', ''):gsub('-+', '-'):gsub('^-', ''):gsub('-$', ''):lower()
-            else
-              for _ = 1, 4 do
-                suffix = suffix .. string.char(math.random(97, 122))
-              end
-            end
-            return date_str .. '_' .. suffix
-          end,
-        },
-        ['Log'] = {
-          notes_subdir = 'personal/log',
-          note_id_func = function(title)
-            local date_str = os.date '%Y-%m-%d %H-%M'
-            local suffix = ''
-            if title ~= nil then
-              suffix = title:gsub('%s+', '-'):gsub('[^%w%-]', ''):gsub('-+', '-'):gsub('^-', ''):gsub('-$', ''):lower()
-            else
-              for _ = 1, 4 do
-                suffix = suffix .. string.char(math.random(97, 122))
-              end
-            end
-            return date_str .. '_' .. suffix
-          end,
-        },
+        -- ['Raw'] = {
+        --   notes_subdir = 'personal/raw',
+        --   note_id_func = function(title)
+        --     local date_str = os.date '%Y-%m-%d'
+        --     local suffix = ''
+        --     if title ~= nil then
+        --       suffix = title:gsub('%s+', '-'):gsub('[^%w%-]', ''):gsub('-+', '-'):gsub('^-', ''):gsub('-$', ''):lower()
+        --     else
+        --       for _ = 1, 4 do
+        --         suffix = suffix .. string.char(math.random(97, 122))
+        --       end
+        --     end
+        --     return date_str .. '_' .. suffix
+        --   end,
+        -- },
+        -- ['Log'] = {
+        --   notes_subdir = 'personal/log',
+        --   note_id_func = function(title)
+        --     local date_str = os.date '%Y-%m-%d %H-%M'
+        --     local suffix = ''
+        --     if title ~= nil then
+        --       suffix = title:gsub('%s+', '-'):gsub('[^%w%-]', ''):gsub('-+', '-'):gsub('^-', ''):gsub('-$', ''):lower()
+        --     else
+        --       for _ = 1, 4 do
+        --         suffix = suffix .. string.char(math.random(97, 122))
+        --       end
+        --     end
+        --     return date_str .. '_' .. suffix
+        --   end,
+        -- },
       },
     },
 
@@ -186,8 +166,8 @@ return {
     daily_notes = {
       folder = 'daily/',
       date_format = '%Y-%m-%d',
-      alias_format = '%B %-d, %Y',
-      default_tags = { 'daily' },
+      -- alias_format = '%B %-d, %Y',
+      -- default_tags = { 'daily' },
       workdays_only = false,
       template = 'Daily.md',
     },

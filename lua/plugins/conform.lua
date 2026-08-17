@@ -17,12 +17,13 @@ return { -- Autoformat
     formatters_by_ft = {
       lua = { 'stylua' },
       javascript = { 'prettierd', 'prettier' },
-      -- htmlangular = { 'prettierd', 'prettier' },
+      htmlangular = { 'prettierd', 'prettier' },
+      html = { 'prettierd', 'prettier' },
       -- htmlangular = { 'htmlhint' },
       typescript = { 'prettierd', 'prettier' },
       ejs = { 'prettierd', 'prettier' },
-      css = { 'stylelint' },
-      scss = { 'stylelint' },
+      css = { 'stylelint', 'prettierd', 'prettier' },
+      scss = { 'stylelint', 'prettierd', 'prettier' },
       json = { 'prettierd', 'prettier' },
       yaml = { 'prettierd', 'prettier' },
       typescriptreact = { 'prettierd', 'prettier' },
@@ -30,9 +31,16 @@ return { -- Autoformat
       markdown = { 'markdownlint' },
       rust = { 'rustfmt' },
       go = { 'gofmt' },
+      sql = { 'pgformatter' },
       -- c = { 'clang-format' },
       -- cpp = { 'clang-format' },
       -- cs = { 'roslyn' },
+    },
+    formatters = {
+      pgformatter = {
+        command = 'pg_format',
+        args = { '-' },
+      },
     },
   },
 }

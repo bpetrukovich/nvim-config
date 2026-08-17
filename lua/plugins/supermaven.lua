@@ -22,6 +22,7 @@ return {
           return false
         end, -- condition to check for stopping supermaven, `true` means to stop supermaven when the condition is true.
       }
+      vim.keymap.set('n', '<leader>ts', '<cmd>SupermavenToggle<CR>', {desc = 'Toggle Supermaven'})
     end,
   },
 }
